@@ -8,6 +8,6 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
-| 08 | Push-pull pair, current-sensing transistor, light bulb tester design | [ep08-transistor-circuits-light-bulb-factory](./ep08-transistor-circuits-light-bulb-factory/) | ✅ Summary + simulations |
+| 08 | Push-pull pair, current-sensing transistor, light bulb tester design | [ep08-transistor-circuits-light-bulb-factory](./ep08-transistor-circuits-light-bulb-factory/) | ✅ Summary + simulations + videos |
 
 **Status key:** ✅ done · 🟡 in progress · ⬜ not started
