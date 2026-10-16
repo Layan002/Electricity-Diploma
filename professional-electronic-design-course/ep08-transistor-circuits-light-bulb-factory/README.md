@@ -173,7 +173,7 @@ $$I_{LED} \approx \frac{9 - 0.7 - 2}{220\ \Omega} \approx 29\ \text{mA}$$
 
 ![Current sense threshold](media/ep8-sim-current-sense-threshold.gif)
 
-*The load current $I_1$ is stepped up from 1 A to 1.5 A while the sense resistor stays at 0.6 Ω. Watch the LED: it stays off at 1 A, glows faintly at 1.1 A, and gets brighter as the current rises.* · [MP4](media/ep8-sim-current-sense-threshold.mp4)
+*The load current (I1) is stepped up from 1 A to 1.5 A while the sense resistor stays at 0.6 Ω. Watch the LED: it stays off at 1 A, glows faintly at 1.1 A, and gets brighter as the current rises.* · [MP4](media/ep8-sim-current-sense-threshold.mp4)
 
 ![Current sensing still](media/ep8-current-sense-sim.png)
 
@@ -190,7 +190,7 @@ $$I_{LED} \approx \frac{9 - 0.7 - 2}{220\ \Omega} \approx 29\ \text{mA}$$
 
 ![Bulb tester sweep](media/ep8-sim-bulb-tester-sweep.gif)
 
-*$I_1$ (the "bulb") is swept 0 A → 1 A → 1.1 A → 1.2 A → 0.5 A. Watch the two LEDs: green alone means OK, red alone means over 1 A, and both lit together marks the transition zone.* · [MP4](media/ep8-sim-bulb-tester-sweep.mp4)
+*The load current I1 (the "bulb") is swept 0 A → 1 A → 1.1 A → 1.2 A → 0.5 A. Watch the two LEDs: green alone means OK, red alone means over 1 A, and both lit together marks the transition zone.* · [MP4](media/ep8-sim-bulb-tester-sweep.mp4)
 
 ![Bulb tester still](media/ep8-current-checker-sim.png)
 
