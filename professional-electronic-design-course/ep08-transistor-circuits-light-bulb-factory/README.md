@@ -146,32 +146,69 @@ The circuit correctly classified both bulbs.
 
 ## My Circuit Wizard Simulations
 
-### Figure 1 – Push-pull pair
+All files are in [`media/`](./media/). Each GIF plays on this page. Click the MP4 link for the full-quality recording.
 
-![Push-pull simulation](figures/ep8-push-pull-sim.png)
+### 1. Push-pull pair
+
+![Push-pull switching](media/ep8-sim-push-pull-switching.gif)
+
+*Toggling SW1 moves the shared base input between +9 V and 0 V, so the lit LED swaps each time. Watch the middle node: when it is pulled high, the red LED (D2) lights; when it is pulled low, the green LED (D1) lights.* · [MP4](media/ep8-sim-push-pull-switching.mp4)
+
+![Push-pull still](media/ep8-push-pull-sim.png)
 
 - **Setup:** 9 V battery (the video uses 12 V), SW1 drives the tied bases of Q1 (NPN) and Q2 (PNP), $R_1 = R_2 = 220\ \Omega$.
-- **Shown:** the input is switched to ground, so Q2 is on and pulls the middle node low. **D1 (top) lights** and D2 is off.
-- **Expected vs. simulated:** matches the table in Section 1. With a low input, the top LED lights.
+- **Expected vs. simulated:**
+
+  | SW1 (input) | Transistor ON | LED lit | Matches theory? |
+  |---|---|---|---|
+  | High (+9 V) | Q1 (NPN) | D2 (red, bottom) | ✔ |
+  | Low (0 V) | Q2 (PNP) | D1 (green, top) | ✔ |
+
+- Only one LED is ever lit, which confirms the "current steering" idea.
 - **Estimated LED current** (assuming ≈ 2 V LED drop):
 
-$$I_{LED} \approx \frac{9 - 0.7 - 2}{220} \approx 29\ \text{mA}$$
+$$I_{LED} \approx \frac{9 - 0.7 - 2}{220\ \Omega} \approx 29\ \text{mA}$$
 
-### Figure 2 – Current sensor
+### 2. Current sensor threshold
 
-![Current sensing simulation](figures/ep8-current-sense-sim.png)
+![Current sense threshold](media/ep8-sim-current-sense-threshold.gif)
 
-- **Setup:** 12 V, current source $I_1 = 1.1\ \text{A}$ as the load, $R_1 = 0.6\ \Omega$ between base and emitter, red LED with 220 Ω on the collector.
-- **Expected:** $V_{BE} = 1.1 \times 0.6 = 0.66\ \text{V}$, which is just enough to turn Q1 on.
-- **Simulated:** D1 lights ✔. This matches the video.
+*The load current $I_1$ is stepped up from 1 A to 1.5 A while the sense resistor stays at 0.6 Ω. Watch the LED: it stays off at 1 A, glows faintly at 1.1 A, and gets brighter as the current rises.* · [MP4](media/ep8-sim-current-sense-threshold.mp4)
 
-### Figure 3 – Complete bulb tester
+![Current sensing still](media/ep8-current-sense-sim.png)
 
-![Bulb tester simulation](figures/ep8-current-checker-sim.png)
+| $I_1$ | Expected $V_{BE} = I_1 \times 0.6\ \Omega$ | Simulated LED |
+|---|---|---|
+| 1.0 A | 0.60 V | OFF |
+| 1.1 A | 0.66 V | ON (dim) |
+| 1.2 A | 0.72 V | ON (bright) |
+| 1.5 A | 0.90 V → clamped near 0.7 V | ON (bright) |
 
-- **Setup:** full design. $I_1$ = load, $R_4 = 0.6\ \Omega$, Q3 BC547B, $R_3 = 4.7\ \text{k}\Omega$, Q1 BC547B, Q2 2N5401, $R_1 = R_2 = 220\ \Omega$.
-- **Shown:** $I_1 = 0\ \text{A}$. Q3 is off, so the output is pulled high and **D2 (green)** should light.
-- **Next step:** sweep $I_1$ through 0.5 A, 0.9 A, 1.0 A, 1.1 A and 1.5 A and record which LED lights.
+**Result:** the transistor switches on between 1.0 A and 1.1 A, exactly as predicted. Brightness keeps rising slightly above the threshold because Q1 is moving from partly on toward fully on (saturation).
+
+### 3. Complete bulb tester (current sweep)
+
+![Bulb tester sweep](media/ep8-sim-bulb-tester-sweep.gif)
+
+*$I_1$ (the "bulb") is swept 0 A → 1 A → 1.1 A → 1.2 A → 0.5 A. Watch the two LEDs: green alone means OK, red alone means over 1 A, and both lit together marks the transition zone.* · [MP4](media/ep8-sim-bulb-tester-sweep.mp4)
+
+![Bulb tester still](media/ep8-current-checker-sim.png)
+
+- **Setup:** full design. $I_1$ = load, $R_4 = 0.6\ \Omega$, Q3 BC547B, $R_3 = 4.7\ \text{k}\Omega$, Q1 BC547B, Q2 2N5401, D1 red (top), D2 green (bottom), $R_1 = R_2 = 220\ \Omega$.
+
+| $I_1$ | Expected | Simulated | OK? |
+|---|---|---|---|
+| 0 A | Green | Green only | ✔ |
+| 0.5 A | Green | Green only | ✔ |
+| 1.0 A | Green (limit) | **Red + green** | ⚠ transition |
+| 1.1 A | Red | **Red + green** (green fainter) | ⚠ transition |
+| 1.2 A | Red | Red only | ✔ |
+
+**Comparison with the video:** in the video, red alone lights at 1.1 A. In my run, green is still partly on at 1.1 A and the clean switch happens at about 1.2 A. Q3 is not yet fully saturated at 1.1 A, so the output sits between high and low and both push-pull transistors conduct a little.
+
+**How I could sharpen it:**
+- Raise $R_3$ a little (e.g. 5.6 kΩ) so Q3 pulls the output low with less current. This moves the switch point down toward 1.0–1.1 A. Going as high as 10 kΩ overshoots and makes red glow below 1 A, as the video showed.
+- Or raise $R_4$ slightly (e.g. 0.62–0.65 Ω) so $V_{BE}$ reaches 0.7 V sooner.
 
 ---
 
