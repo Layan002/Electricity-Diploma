@@ -10,6 +10,10 @@ I'm studying the **Electricity Diploma** from Waleed Issa Academy on YouTube (in
 |---|---|
 | [Professional Electronic Design Course](./professional-electronic-design-course/) | 🟡 In progress |
 
+## Episode Index
+
+[📊 Electricity-Diploma-Episode-Index.xlsx](./Electricity-Diploma-Episode-Index.xlsx) has one row per episode: concepts, circuits, formulas, components, simulation and hardware results, and links to each README and video.
+
 ## Credit
 
 All course content belongs to Waleed Issa Academy. The summaries here are my own notes, written for study purposes, with links to the original videos.
