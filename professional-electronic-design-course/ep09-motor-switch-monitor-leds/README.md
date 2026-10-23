@@ -107,7 +107,7 @@ In the first version both LEDs still shared **one** 1 kΩ resistor to ground. Wh
 
 - The transistor now passes about $10.8\ \text{mA}$ through the shared resistor.
 - That drops about $10.8\ \text{mA} \times 1\ \text{k}\Omega \approx 10.8\ \text{V}$ across it.
-- The green LED is left with only about $12 - 10.8 \approx 1.2\ \text{V}$ (I saw ≈ 1.6 V). That is below its ≈ 2 V turn-on voltage, so it stays dark.
+- The green LED is left with only about $12 - 10.8 \approx 1.2\ \text{V}$ (my simulation shows ≈ 0.98 V, see [section 5 of my simulations](#5-design-3-transistor-short-shared-resistor-wrong-connection)). That is below its ≈ 2 V turn-on voltage, so it stays dark.
 
 ### The fix: separate resistors
 
@@ -198,7 +198,55 @@ $$5.11 + 1.68 + 5.21 = 12.0\ \text{V} \ ✔ \qquad I = \frac{5.21\ \text{V}}{1\ 
 
 **Check (switch closed):** the red branch has only ≈ 2.45 V across it but needs ≈ 7 V, so the Zener and red LED are both off ✔. The −2.23 V on the red LED is not a real "reverse" condition. When two parts in series are both off, the simulator splits the small voltage between them arbitrarily.
 
-**Expected vs. simulated:** both designs behave exactly as predicted. Only one LED is lit at a time, and the green LED current (≈ 9.4 mA) matches the value in the video (9.37 mA).
+### 4. Design 3: transistor short, separate resistors (working)
+
+![Transistor design with separate resistors](media/ep9-sim-transistor-separate-resistors.gif)
+
+*The corrected transistor version: each LED has its own 1 kΩ resistor (VR1 for red, VR3 for green). SW1 is toggled. When it closes, Q1 switches on, the red LED (D1) goes dark and the green LED (D2) lights with the motor. When it opens, red comes back. Watch the voltage across D1 fall to ≈ 1 V when Q1 is on.* · [MP4](media/ep9-sim-transistor-separate-resistors.mp4)
+
+- **Setup:** 12 V, Q1 NPN with VR2 = 10 kΩ base resistor, D1 red, D2 green, VR1 = 1 kΩ (red branch), VR3 = 1 kΩ (green branch), MT1 motor.
+
+| Measurement | SW1 open | SW1 closed |
+|---|---|---|
+| Red LED D1 (= Q1's $V_{CE}$) | **2.41 V (on)** | 1.03 V (off, bypassed by Q1) |
+| Green LED D2 | 0 V (off) | **2.48 V (on)** |
+| Q1 $V_{BE}$ | −9.58 V (off) | 703.77 mV (on) |
+| Base resistor VR2 | 0 V | 321.61 mV → ≈ 32 µA |
+| Red-branch resistor VR1 | 9.58 V → 9.58 mA | 10.97 V → 10.97 mA (through Q1) |
+| Green-branch resistor VR3 | 0 V | 9.51 V → 9.51 mA |
+| Motor | 0 V | 11.99 V |
+| Battery current | 9.58 mA | ≈ 1.31 A (motor) |
+
+**Check (switch closed):**
+
+$$V_{D2} + V_{VR3} = 2.48 + 9.51 = 11.99\ \text{V} \ ✔ \qquad I_{green} = \frac{9.51\ \text{V}}{1\ \text{k}\Omega} = 9.51\ \text{mA}$$
+
+The green current matches the video's 9.37 mA closely. Q1 holds only 1.03 V across the red LED, which is well below its ≈ 2 V turn-on, so red stays off ✔. Q1 isn't fully saturated here (a saturated transistor would show ≈ 0.2 V), because the 10 kΩ base resistor gives only ≈ 32 µA of base current. It still works, since 1 V is enough to keep the LED off. A smaller base resistor (1–4.7 kΩ, as in the video) would push $V_{CE}$ lower.
+
+### 5. Design 3: transistor short, shared resistor (wrong connection)
+
+![Transistor design with one shared resistor](media/ep9-sim-transistor-shared-resistor-fault.gif)
+
+*The first, wrong version: both LEDs and the transistor return to ground through **one** shared 1 kΩ resistor (VR4). With SW2 open the red LED (D3) lights normally. But when SW2 closes and the motor runs, the green LED (D4) **never lights**, because it gets less than 1 V.* · [MP4](media/ep9-sim-transistor-shared-resistor-fault.mp4)
+
+- **Setup:** same as above, but Q2, D3 red, D4 green, VR5 = 10 kΩ base resistor, and a single VR4 = 1 kΩ for everything, MT2 motor.
+
+| Measurement | SW2 open | SW2 closed |
+|---|---|---|
+| Red LED D3 | **2.41 V (on)** | 985.46 mV (off) |
+| Green LED D4 | −9.58 V (reverse, off) | 983.98 mV (**off: the fault**) |
+| Q2 $V_{BE}$ | −9.58 V (off) | 699.74 mV (on) |
+| Shared resistor VR4 | 9.58 V → 9.58 mA | 10.83 V → 10.83 mA |
+| Motor | 0 V | 11.82 V |
+| Battery current | 9.58 mA | ≈ 1.49 A (motor) |
+
+**Why green stays off:** Q2's current flows through the shared resistor and drops most of the supply across it:
+
+$$V_{VR4} = 10.83\ \text{mA} \times 1\ \text{k}\Omega = 10.83\ \text{V} \quad\Rightarrow\quad V_{left} = 12 - 10.83 \approx 1.17\ \text{V}$$
+
+That leaves ≈ 1 V for the green LED (I measured 0.98 V), but it needs ≈ 2 V to turn on. Compare it with section 4: the only change is splitting VR4 into VR1 + VR3, and green jumps from 0.98 V (off) to 2.48 V (on).
+
+**Expected vs. simulated:** all three designs behave as predicted. Only one LED is lit at a time, and the green LED current (≈ 9.4–9.5 mA) matches the value in the video (9.37 mA). The shared-resistor fault from the video also shows up exactly as explained.
 
 ---
 
