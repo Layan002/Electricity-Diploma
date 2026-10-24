@@ -107,7 +107,7 @@ In the first version both LEDs still shared **one** 1 kΩ resistor to ground. Wh
 
 - The transistor now passes about $10.8\ \text{mA}$ through the shared resistor.
 - That drops about $10.8\ \text{mA} \times 1\ \text{k}\Omega \approx 10.8\ \text{V}$ across it.
-- The green LED is left with only about $12 - 10.8 \approx 1.2\ \text{V}$ (my simulation shows ≈ 0.98 V, see [section 5 of my simulations](#5-design-3-transistor-short-shared-resistor-wrong-connection)). That is below its ≈ 2 V turn-on voltage, so it stays dark.
+- The green LED is left with only about $12 - 10.8 \approx 1.2\ \text{V}$ (my simulation shows ≈ 0.98 V, see [simulation 4](#4-design-3-transistor-shared-resistor-wrong-connection)). That is below its ≈ 2 V turn-on voltage, so it stays dark.
 
 ### The fix: separate resistors
 
@@ -169,17 +169,11 @@ $$I = \frac{12 - 3(0.587) - 2.16}{1\ \text{k}\Omega} = \frac{8.08\ \text{V}}{1\ 
 
 **Check (switch closed):** voltage across the red branch is $12 - 9.54 = 2.46\ \text{V}$. That is close to the green LED's 2.31 V (the rest is lost in wiring and the ammeter). The red branch needs about 3.9 V, so it stays off ✔.
 
-### 2. Design 2: Zener, first press
+### 2. Design 2: Zener diode
 
-![Zener first press](media/ep9-sim-zener-first-press.gif)
+![Zener switching](media/ep9-sim-zener-switching.gif)
 
-*A short first test of the Zener version. The red LED (D1) is lit with the switch open, and closing SW1 swaps it for the green LED (D2) as the motor starts.* · [MP4](media/ep9-sim-zener-first-press.mp4)
-
-### 3. Design 2: Zener, repeated toggling
-
-![Zener toggling](media/ep9-sim-zener-toggling.gif)
-
-*SW1 is toggled several times. Each time it closes, the motor spins up and green takes over; each time it opens, red comes back. Watch the Zener's voltage drop below 5.1 V when green is on, which proves it has stopped conducting.* · [MP4](media/ep9-sim-zener-toggling.mp4)
+*SW1 is toggled several times. Each time it closes, the motor spins up and green takes over; each time it opens, red comes back. Watch the Zener's voltage drop below 5.1 V when green is on, which proves it has stopped conducting.* · [MP4](media/ep9-sim-zener-switching.mp4)
 
 - **Setup:** 12 V, D3 = 1N751 (5.1 V Zener), D1 red, D2 green, VR1 = 1 kΩ shared resistor, MT1 motor.
 
@@ -198,7 +192,7 @@ $$5.11 + 1.68 + 5.21 = 12.0\ \text{V} \ ✔ \qquad I = \frac{5.21\ \text{V}}{1\ 
 
 **Check (switch closed):** the red branch has only ≈ 2.45 V across it but needs ≈ 7 V, so the Zener and red LED are both off ✔. The −2.23 V on the red LED is not a real "reverse" condition. When two parts in series are both off, the simulator splits the small voltage between them arbitrarily.
 
-### 4. Design 3: transistor short, separate resistors (working)
+### 3. Design 3: transistor, separate resistors (working)
 
 ![Transistor design with separate resistors](media/ep9-sim-transistor-separate-resistors.gif)
 
@@ -223,7 +217,7 @@ $$V_{D2} + V_{VR3} = 2.48 + 9.51 = 11.99\ \text{V} \ ✔ \qquad I_{green} = \fra
 
 The green current matches the video's 9.37 mA closely. Q1 holds only 1.03 V across the red LED, which is well below its ≈ 2 V turn-on, so red stays off ✔. Q1 isn't fully saturated here (a saturated transistor would show ≈ 0.2 V), because the 10 kΩ base resistor gives only ≈ 32 µA of base current. It still works, since 1 V is enough to keep the LED off. A smaller base resistor (1–4.7 kΩ, as in the video) would push $V_{CE}$ lower.
 
-### 5. Design 3: transistor short, shared resistor (wrong connection)
+### 4. Design 3: transistor, shared resistor (wrong connection)
 
 ![Transistor design with one shared resistor](media/ep9-sim-transistor-shared-resistor-fault.gif)
 
@@ -244,7 +238,7 @@ The green current matches the video's 9.37 mA closely. Q1 holds only 1.03 V acro
 
 $$V_{VR4} = 10.83\ \text{mA} \times 1\ \text{k}\Omega = 10.83\ \text{V} \quad\Rightarrow\quad V_{left} = 12 - 10.83 \approx 1.17\ \text{V}$$
 
-That leaves ≈ 1 V for the green LED (I measured 0.98 V), but it needs ≈ 2 V to turn on. Compare it with section 4: the only change is splitting VR4 into VR1 + VR3, and green jumps from 0.98 V (off) to 2.48 V (on).
+That leaves ≈ 1 V for the green LED (I measured 0.98 V), but it needs ≈ 2 V to turn on. Compare it with simulation 3: the only change is splitting VR4 into VR1 + VR3, and green jumps from 0.98 V (off) to 2.48 V (on).
 
 **Expected vs. simulated:** all three designs behave as predicted. Only one LED is lit at a time, and the green LED current (≈ 9.4–9.5 mA) matches the value in the video (9.37 mA). The shared-resistor fault from the video also shows up exactly as explained.
 
