@@ -179,6 +179,65 @@ The threshold voltage (10 V) can also be changed (to 11 V, 12 V…) by choosing 
 
 ---
 
+## My Circuit Wizard Simulation
+
+All files are in [`media/`](./media/). The GIF plays on this page (1.5× speed). Click the MP4 link for the full-quality recording.
+
+### Battery voltage sweep, $R_{B1}$ = 10 kΩ vs 677 Ω
+
+![Battery voltage sweep](media/ep10-sim-battery-voltage-sweep.gif)
+
+*The battery B1 is changed by hand: 10 V → 11 V → 10 V, then down to 0 V and back up step by step. R1 is then changed from 10 kΩ to 677 Ω and the sweep is repeated. Watch the ammeter in the Zener branch: it reads 0 A whenever red is lit and jumps to µA as soon as green takes over.* · [MP4](media/ep10-sim-battery-voltage-sweep.mp4)
+
+- **Setup:** B1 variable, D3 = 1N4740 (10 V Zener, used instead of the BZX85C10), R1 = $R_{B1}$ (10 kΩ, then 677 Ω), Q1 and Q2 = BC547B, R4 = $R_{B2}$ = 46 kΩ, R2 and R3 = 1 kΩ, D1 green, D2 red.
+- **Meters:** voltage across the Zener, ammeter in series with the Zener ($I_{B1}$), $V_{CE}$ of Q1 and Q2, voltage across the red LED.
+
+**With $R_{B1}$ = 10 kΩ:**
+
+| B1 | Zener | $I_{B1}$ | $V_{CE}$ Q1 | $V_{CE}$ Q2 | Red LED D2 | Lit |
+|---|---|---|---|---|---|---|
+| 11 V | 9.78 V | 52.01 µA | 101.44 mV | 10.47 V | 0.52 V | **Green** |
+| 10 V | 9.56 V | 0 A | 9.06 V | 46.55 mV | 2.12 V | **Red** |
+| 8 V | 8.00 V | 0 A | 7.11 V | 45.77 mV | 1.83 V | **Red** |
+| 3 V | 3.00 V | 0 A | 2.27 V | 50.93 mV | 1.10 V | None |
+| 2 V | 2.00 V | 0 A | 1.32 V | 61.78 mV | 0.94 V | None |
+| 1 V | 1.00 V | 0 A | 0.49 V | 370.68 mV | 0.63 V | None |
+
+**With $R_{B1}$ = 677 Ω:**
+
+| B1 | Zener | $I_{B1}$ | $V_{CE}$ Q1 | $V_{CE}$ Q2 | Red LED D2 | Lit |
+|---|---|---|---|---|---|---|
+| 5 V | 5.00 V | 0 A | 4.20 V | 46.26 mV | 1.39 V | **Red** (dim) |
+| 10 V | 9.56 V | 0 A | 9.06 V | 46.55 mV | 2.12 V | **Red** |
+| 11 V | 9.84 V | 638.47 µA | 24.20 mV | 10.48 V | 0.52 V | **Green** |
+
+**Check: Q1's base current at 11 V (KVL around the Zener branch):**
+
+$$R_{B1} = 677\ \Omega:\quad V_{BE} = 11 - 9.84 - (638.47\ \mu\text{A})(677\ \Omega) = 11 - 9.84 - 0.432 \approx 0.73\ \text{V} \ ✔$$
+
+$$R_{B1} = 10\ \text{k}\Omega:\quad V_{BE} = 11 - 9.78 - (52.01\ \mu\text{A})(10\ \text{k}\Omega) = 11 - 9.78 - 0.52 \approx 0.70\ \text{V} \ ✔$$
+
+The design target was 0.5 mA. With 677 Ω I got 0.64 mA, close and slightly above (the battery is at 11 V and the simulated Zener drops 9.84 V, not 10 V). With 10 kΩ the base current is only 52 µA, about the bare minimum $I_C/\beta = 50\ \mu\text{A}$. Q1 still saturates (101 mV), but 677 Ω drives it harder (24 mV), exactly the trade-off described in the video.
+
+**Check: red LED current at 10 V:**
+
+$$I_{red} = \frac{10 - 2.12 - 0.047}{1\ \text{k}\Omega} \approx 7.8\ \text{mA}$$
+
+**Check: Q2's base current at 10 V (Q1 off):** Q1's collector sits at 9.06 V, so
+
+$$I_{B2} \approx \frac{9.06 - 0.7}{46\ \text{k}\Omega} \approx 182\ \mu\text{A}$$
+
+That is close to the 200 µA design value, enough to saturate Q2 ($V_{CE} \approx 47\ \text{mV}$). It also flows through the green LED, which only gets $10 - 9.06 - 0.18 \approx 0.76\ \text{V}$, far below its turn-on voltage, so green stays dark ✔.
+
+**Expected vs. simulated:**
+
+- Green at 11 V and red at 10 V, with both resistor values, just like the video ✔.
+- At 10 V the simulated Zener sits at 9.56 V with **0 A**, meaning it is below breakdown. That is the "decision" happening.
+- I only tested whole volts, so I can't see the exact switch point yet. The video found ≈ 10.5 V.
+- **New finding:** below ≈ 4–5 V **neither** LED lights. Q2 is still on, but the battery can't cover the red LED's ≈ 2 V plus the resistor drop. At 5 V the red LED is dim (≈ 3.6 mA). In a real 12 V system, a battery that low is already dead, so it doesn't matter, but it's good to know.
+
+---
+
 ## What I Learned
 
 - A saturated transistor pulls its collector to ≈ 0 V. That makes its collector a 12 V / 0 V signal that can drive a second transistor.
@@ -188,3 +247,10 @@ The threshold voltage (10 V) can also be changed (to 11 V, 12 V…) by choosing 
 - Design flow: load current → $I_B = I_C/\beta_{min}$ → multiply ×2–10 for saturation → check the Zener's minimum current → solve KVL for each resistor.
 - When a datasheet doesn't give $I_{Z,min}$, use the lowest test current (or measure it).
 - Calculated values are a starting point: test and adjust, for example a higher $R_{B1}$ to save battery current.
+- In my simulation, $R_{B1}$ = 10 kΩ draws ≈ 12× less base current than 677 Ω (52 µA vs 638 µA) and still works, but Q1 is less deeply saturated (101 mV vs 24 mV).
+- The indicator itself needs a minimum supply: below ≈ 4–5 V no LED lights at all.
+
+### Next to try
+
+- Sweep B1 in 0.1 V steps between 10 V and 11 V to find my exact switch point and compare it with the video's ≈ 10.5 V.
+- Replace the Zener + $R_{B1}$ with an LDR divider to make a light/dark indicator.
