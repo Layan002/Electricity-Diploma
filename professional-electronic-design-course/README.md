@@ -8,11 +8,11 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
-| 03 | Designing a simple circuit (closed / open) with full calculations | — | ⬜ |
-| 04 | Designing a quiz board for two school teams | — | ⬜ |
-| 05 | Designing a large LED display board and choosing its component values | — | ⬜ |
-| 06 | Designing a relay circuit for a contest where the fastest team wins | — | ⬜ |
-| 07 | Designing a fish tank circuit based on sunlight intensity, with a light cell | — | ⬜ |
+| 03 | Designing a simple circuit (closed / open) with full calculations | — (not uploaded yet) | ✅ Finished with simulation, not on GitHub yet |
+| 04 | Designing a quiz board for two school teams | — (not uploaded yet) | ✅ Finished with simulation, not on GitHub yet |
+| 05 | Designing a large LED display board and choosing its component values | — (not uploaded yet) | ✅ Finished with simulation, not on GitHub yet |
+| 06 | Designing a relay circuit for a contest where the fastest team wins | — (not uploaded yet) | ✅ Finished with simulation, not on GitHub yet |
+| 07 | Designing a fish tank circuit based on sunlight intensity, with a light cell | — (not uploaded yet) | ✅ Finished with simulation, not on GitHub yet |
 | 08 | Push-pull pair, current-sensing transistor, light bulb tester design | [ep08-transistor-circuits-light-bulb-factory](./ep08-transistor-circuits-light-bulb-factory/) | ✅ Summary + simulations + videos |
 | 09 | Motor switch monitor with red/green LEDs: LED as voltage clamp, 3-diode, Zener and transistor-short designs | [ep09-motor-switch-monitor-leds](./ep09-motor-switch-monitor-leds/) | ✅ Summary + simulations of all 3 designs (incl. shared-resistor fault) + videos |
 | 10 | Battery charge status monitor: inverting transistor pair + 10 V Zener (green ≥ 10 V, red < 10 V), resistor design from β and $I_{Z,min}$ | [ep10-battery-charge-status-monitor](./ep10-battery-charge-status-monitor/) | ✅ Summary + simulation (voltage sweep, 10 kΩ vs 677 Ω) + video |
