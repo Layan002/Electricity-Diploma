@@ -203,6 +203,102 @@ In a car, the sensor would sit on the engine body, so the fan runs only while th
 
 ---
 
+## My Circuit Wizard Simulations
+
+All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, cropped to the circuit). Click the MP4 links for the full recordings. In every circuit the supply is 12 V and the voltmeter sits across the output transistor's collector and emitter, so it shows the voltage **wasted** in the transistor. The closer to 0 V, the better.
+
+### 1. NPN above a grounded load (inverting pair)
+
+![NPN above load, inverting pair](media/ep11-sim-npn-above-load-inverting-pair.gif)
+
+*SW1 is toggled. With SW1 open, Q2 (NPN) lights the red LED D1 below it but keeps 4.20 V across itself. With SW1 closed, Q1 takes over, the green LED D2 lights and Q2 is off (11.99 V). Watch the voltmeter: it never gets near 0 V while D1 is lit.* · [MP4](media/ep11-sim-npn-above-load-inverting-pair.mp4)
+
+- **Setup:** Q1 base ← R1 = 10 kΩ ← SW1; Q1 collector ← R3 = 220 Ω + green D2 ← +12 V; R4 = 46 kΩ from Q1 collector to Q2 base; Q2 collector to +12 V, emitter → red D1 → R2 = 220 Ω → ground.
+
+### 2. Same circuit, 10 kΩ pull-up instead of the green LED
+
+![NPN above load, 10k pull-up](media/ep11-sim-npn-above-load-10k-pullup.gif)
+
+*Q1's collector load is now a plain R7 = 10 kΩ. When the red LED D3 is on, Q4 still drops 4.12 V. Removing the green LED barely changed anything.* · [MP4](media/ep11-sim-npn-above-load-10k-pullup.mp4)
+
+| Circuit | $V_{CE}$ of output NPN (load on) | Voltage left for the load |
+|---|---|---|
+| Green LED + 220 Ω pull-up | 4.20 V | 7.80 V |
+| 10 kΩ pull-up | 4.12 V | 7.88 V |
+| Video (same idea) | — | ≈ 7.8 V |
+
+**Expected vs. simulated:** my 7.8 V matches the video exactly ✔. Both versions waste about **4.1–4.2 V**, so the pull-up isn't the problem. The 46 kΩ base resistor is: the NPN is an emitter follower, and its emitter can only sit about 0.7 V below its base. The base is fed through 46 kΩ, so it never gets close to 12 V. With a red LED and 220 Ω this is roughly $(12 - 4.2 - 2)/220 \approx 26\ \text{mA}$, so the transistor wastes about $4.2\ \text{V} \times 26\ \text{mA} \approx 0.11\ \text{W}$. Fine for an LED, but at 1 A it would be over 4 W.
+
+### 3. Driver transistor with an LED load (BC547B → TIP127)
+
+![Driver transistor TIP127 with LED](media/ep11-sim-driver-tip127-led.gif)
+
+*SW2 is toggled. When it closes, Q3 (BC547B) pulls the base of Q4 (TIP127, PNP) low, and the red LED D3 below Q4 lights. Watch the voltmeter fall from 11.89 V to just 412 mV.* · [MP4](media/ep11-sim-driver-tip127-led.mp4)
+
+- **Setup:** SW2 → R5 = 10 kΩ → Q3 base; R8 = 10 kΩ from +12 V to Q3 collector; R7 = 10 kΩ from Q3 collector to Q4 base; Q4 emitter to +12 V, collector → red D3 → R4 = 220 Ω → ground.
+
+### 4. Driver transistor with a motor (BC547B → TIP127)
+
+![Driver transistor TIP127 with motor](media/ep11-sim-driver-tip127-motor.gif)
+
+*SW1 is toggled with a DC motor MT2 as the grounded load. The green LED D1 in Q1's collector is the "motor running" indicator. Watch the voltmeter: 12.00 V when off, 489–577 mV while the motor spins.* · [MP4](media/ep11-sim-driver-tip127-motor.mp4)
+
+- **Setup:** SW1 → R1 = 10 kΩ → Q1 (BC547B) base; green D1 + R3 = 220 Ω from +12 V to Q1 collector; R2 = 500 Ω from Q1 collector to Q2 (TIP127) base; Q2 emitter to +12 V, collector → MT2 → ground.
+
+| Circuit (load on) | Output transistor | $V_{CE}$ | Load gets |
+|---|---|---|---|
+| NPN above load (sim 1) | NPN | 4.20 V | 7.80 V |
+| Driver, LED load (sim 3) | TIP127 | 0.41 V | 11.59 V |
+| Driver, motor load (sim 4) | TIP127 | 0.49–0.58 V | ≈ 11.4–11.5 V |
+| Video, LED / lamp + motor | PNP | — | 11.58 V / ≈ 11 V |
+
+**Expected vs. simulated:** the driver circuit fixes the problem ✔. The wasted voltage drops about **10×**, from 4.2 V to 0.41 V, even though the LED now draws more current (≈ 44 mA vs 26 mA). The transistor's power drops from ≈ 0.11 W to $0.41\ \text{V} \times 44\ \text{mA} \approx 18\ \text{mW}$.
+
+> **Note:** I used a **TIP127**, which is a PNP *Darlington* (two transistors in one package). A Darlington can't saturate as deeply as a single transistor, so 0.4–0.6 V is about as low as it goes. With a single PNP like the BD140 used in the video, $V_{CE}$ could be lower.
+
+### 5. Second form: PNP drives NPN, ground-active switch
+
+![PNP drives NPN with ground-active input](media/ep11-sim-pnp-drives-npn-ground-input.gif)
+
+*Here SW1 connects Q2's base to **ground** instead of to +12 V. When it closes, Q2 (PNP) turns on, lights D1 and feeds Q1's base, which lights D2 on Q1's collector. Watch Q1's voltmeter: 54.85 mV, fully saturated.* · [MP4](media/ep11-sim-pnp-drives-npn-ground-input.mp4)
+
+- **Setup:** Q2 emitter to +12 V, base → R3 = 500 Ω → SW1 → ground; Q2 collector → green D1 → R1 = 100 Ω → ground, and → R2 = 10 kΩ → Q1 base; Q1 collector ← R4 = 220 Ω + green D2 ← +12 V; Q1 emitter to ground.
+
+**Expected vs. simulated:** works exactly as described in the video ✔. A switch to **ground** turns everything on, and the output NPN saturates hard (55 mV), because Q2 hands it almost the full 12 V through R2. The load (D2) sits above Q1, so this form doesn't follow the car rule. It's for circuits where the input signal is ground-active.
+
+> **Side note:** R1 = 100 Ω is quite low for an LED on 12 V. Roughly $(12 - 2)/100 \approx 0.1\ \text{A}$ would flow, far above a normal LED's ≈ 20 mA. In a real build I'd use ≈ 470 Ω–1 kΩ there.
+
+### 6. The cooling-fan controller (thermistor → BC547B → BD140 → fan)
+
+![Thermistor fan controller](media/ep11-sim-thermistor-fan-controller.gif)
+
+*The thermistor R6 is heated step by step from 15 °C to 80 °C with its slider. Nothing happens until ≈ 65 °C, then the voltage across Q2 starts to fall, the red LED D2 lights and the fan MT1 spins. Watch the voltmeter: at 80 °C it still reads 9.05 V, so most of the 12 V is lost in Q2.* · [MP4](media/ep11-sim-thermistor-fan-controller.mp4)
+
+- **Setup:** R6 = NTC thermistor (10 kΩ at 25 °C) from +12 V to the divider midpoint; R5 = 100 Ω from midpoint to ground; R1 = 10 kΩ from midpoint to Q1 (BC547B) base; red D2 + R3 = 600 Ω from +12 V to Q1 collector; R2 = 1 kΩ from Q1 collector to Q2 (BD140) base; Q2 emitter to +12 V, collector → fan MT1 → ground.
+
+| Temperature | Thermistor R6 | Divider voltage* | $V_{CE}$ of Q2 | Fan / LED |
+|---|---|---|---|---|
+| 15.4 °C | 15.64 kΩ | 0.08 V | 12.00 V | Off |
+| 33.8 °C | 6.79 kΩ | 0.17 V | 12.00 V | Off |
+| 43.1 °C | 4.64 kΩ | 0.25 V | 12.00 V | Off |
+| 56.9 °C | 2.73 kΩ | 0.42 V | 12.00 V | Off |
+| 64.6 °C | 2.07 kΩ | 0.55 V | 11.93 V | Just starting |
+| 70.8 °C | — | — | 11.41 V | Starting |
+| 75.4 °C | 1.44 kΩ | 0.78 V | 9.42 V | On (partly) |
+| 76.9 °C | 1.37 kΩ | 0.82 V | 9.65 V | On (partly) |
+| 80 °C | 1.24 kΩ | 0.90 V | **9.05 V** | On (partly) |
+
+\* Calculated by me: $V = 12 \times \frac{100}{R_6 + 100}$, ignoring the small current drawn by Q1's base.
+
+**Expected vs. simulated:**
+
+- **Switch-on point ✔.** My estimate was "the fan turns on when the thermistor drops below ≈ 2 kΩ". In the simulation it starts at **2.07 kΩ (≈ 65 °C)**. Circuit Wizard's thermistor is 10 kΩ at 25 °C (not 8 kΩ like the instructor's), so at room temperature the divider gives only ≈ 0.12 V, safely off.
+- **Saturation ✘.** This is the surprise. Even at 80 °C the BD140 still drops **9.05 V**, so the fan gets only ≈ 3 V. That's the very problem this episode is about, and the driver circuit doesn't solve it here. (The 9.42 → 9.65 V wobble between 75 °C and 77 °C is probably the motor still settling after each step.)
+- **My explanation:** the weak link is **Q1's base**. The divider's output is under 1 V and it reaches Q1 through R1 = 10 kΩ, so Q1 gets only about $\frac{0.9 - 0.65}{10\ \text{k}\Omega} \approx 25\ \mu\text{A}$. Even with $\beta \approx 300$, Q1 can sink only ≈ 7 mA. The LED branch alone wants $\frac{12 - 2}{600} \approx 17\ \text{mA}$, so Q1 never saturates and Q2's base is never pulled firmly to 0 V. In sims 3 and 4, Q1 was fed from the full 12 V through 10 kΩ (≈ 1.1 mA), which is why those worked.
+- In the video, the divider seems to feed the driver more directly (the instructor mentions only a 1 kΩ in that area), so his hardware likely didn't hit this.
+
+---
+
 ## What I Learned
 
 - **Saturation = cool transistor.** $P = V_{CE} \times I_C$: with $V_{CE} \approx 0$ almost no power becomes heat.
@@ -214,10 +310,15 @@ In a car, the sensor would sit on the engine body, so the fan runs only while th
 - Swapping roles (PNP driving NPN) suits **ground-active** input signals.
 - Thermistor + fixed resistor = a **voltage divider** that turns temperature into a base voltage. Size the fixed resistor so the base stays below ≈ 0.4–0.5 V at the "off" temperature.
 - With the fan blowing on its own sensor, the circuit turns on and off rapidly, because nothing gives it a gap between the on and off temperatures.
+- **From my simulations:** the NPN-above-load circuit wastes ≈ 4.2 V (load gets 7.8 V, same as the video). The NPN→PNP driver cuts that to ≈ 0.4–0.6 V, about 10× less.
+- A Darlington (TIP127) has a higher saturation voltage than a single transistor, so it can't reach the ≈ 50–100 mV of a single BC547.
+- The PNP-drives-NPN form works with a switch to ground and saturates the output NPN hard (55 mV).
+- My ≈ 2 kΩ switch-on estimate for the thermistor was right: the simulated fan starts at 2.07 kΩ (≈ 65 °C).
+- **A driver circuit only helps if the driver itself saturates.** In my fan controller, Q1 is fed from a < 1 V divider through 10 kΩ, so it gets ≈ 25 µA. Q2 then stays only partly on and wastes ≈ 9 V. Always check the first transistor's base current, not just the last one's.
 
 ### Next to try
 
-- Build the fan controller in Circuit Wizard (BD140, BC547B, NTC thermistor, $R_2$ = 100 Ω) and record the divider voltage and fan voltage while sweeping the temperature.
-- Measure $V_{CE}$ of the BD140 and compare the NPN-above-load and PNP-driver versions with a ≈ 1.2 A motor: how much power does each waste?
-- Find the thermistor resistance at which my simulated fan switches on, and compare with my ≈ 2 kΩ estimate.
+- Fix the fan controller: lower R1 from 10 kΩ to ≈ 1 kΩ (≈ 0.23 mA into Q1) and/or raise R3 from 600 Ω to ≈ 2.2 kΩ so the LED takes less of Q1's current. Then check that the BD140's $V_{CE}$ drops below ≈ 0.3 V at 80 °C, and see how much the switch-on temperature moves.
+- Replace the TIP127 with a BD140 in sims 3 and 4 and compare $V_{CE}$.
+- Put an ammeter in series with the fan to work out the power wasted in Q2: $P = V_{CE} \times I_{fan}$ before and after the fix.
 - Try $R_2$ = 276 Ω vs 100 Ω and compare the switch-on temperature.
