@@ -213,6 +213,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 
 *SW1 is toggled. With SW1 open, Q2 (NPN) lights the red LED D1 below it but keeps 4.20 V across itself. With SW1 closed, Q1 takes over, the green LED D2 lights and Q2 is off (11.99 V). Watch the voltmeter: it never gets near 0 V while D1 is lit.* · [MP4](media/ep11-sim-npn-above-load-inverting-pair.mp4)
 
+📁 Circuit file: [ep11-npn-above-load.cwz](./ep11-npn-above-load.cwz) (one file with both versions: green LED pull-up and 10 kΩ pull-up)
+
 - **Setup:** Q1 base ← R1 = 10 kΩ ← SW1; Q1 collector ← R3 = 220 Ω + green D2 ← +12 V; R4 = 46 kΩ from Q1 collector to Q2 base; Q2 collector to +12 V, emitter → red D1 → R2 = 220 Ω → ground.
 
 ### 2. Same circuit, 10 kΩ pull-up instead of the green LED
@@ -220,6 +222,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 ![NPN above load, 10k pull-up](media/ep11-sim-npn-above-load-10k-pullup.gif)
 
 *Q1's collector load is now a plain R7 = 10 kΩ. When the red LED D3 is on, Q4 still drops 4.12 V. Removing the green LED barely changed anything.* · [MP4](media/ep11-sim-npn-above-load-10k-pullup.mp4)
+
+📁 Circuit file: [ep11-npn-above-load.cwz](./ep11-npn-above-load.cwz) (one file with both versions: green LED pull-up and 10 kΩ pull-up)
 
 | Circuit | $V_{CE}$ of output NPN (load on) | Voltage left for the load |
 |---|---|---|
@@ -235,6 +239,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 
 *SW2 is toggled. When it closes, Q3 (BC547B) pulls the base of Q4 (TIP127, PNP) low, and the red LED D3 below Q4 lights. Watch the voltmeter fall from 11.89 V to just 412 mV.* · [MP4](media/ep11-sim-driver-tip127-led.mp4)
 
+📁 Circuit file: [ep11-driver-tip127.cwz](./ep11-driver-tip127.cwz) (one file with both versions: LED load and motor load)
+
 - **Setup:** SW2 → R5 = 10 kΩ → Q3 base; R8 = 10 kΩ from +12 V to Q3 collector; R7 = 10 kΩ from Q3 collector to Q4 base; Q4 emitter to +12 V, collector → red D3 → R4 = 220 Ω → ground.
 
 ### 4. Driver transistor with a motor (BC547B → TIP127)
@@ -242,6 +248,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 ![Driver transistor TIP127 with motor](media/ep11-sim-driver-tip127-motor.gif)
 
 *SW1 is toggled with a DC motor MT2 as the grounded load. The green LED D1 in Q1's collector is the "motor running" indicator. Watch the voltmeter: 12.00 V when off, 489–577 mV while the motor spins.* · [MP4](media/ep11-sim-driver-tip127-motor.mp4)
+
+📁 Circuit file: [ep11-driver-tip127.cwz](./ep11-driver-tip127.cwz) (one file with both versions: LED load and motor load)
 
 - **Setup:** SW1 → R1 = 10 kΩ → Q1 (BC547B) base; green D1 + R3 = 220 Ω from +12 V to Q1 collector; R2 = 500 Ω from Q1 collector to Q2 (TIP127) base; Q2 emitter to +12 V, collector → MT2 → ground.
 
@@ -262,6 +270,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 
 *Here SW1 connects Q2's base to **ground** instead of to +12 V. When it closes, Q2 (PNP) turns on, lights D1 and feeds Q1's base, which lights D2 on Q1's collector. Watch Q1's voltmeter: 54.85 mV, fully saturated.* · [MP4](media/ep11-sim-pnp-drives-npn-ground-input.mp4)
 
+📁 Circuit file: [ep11-pnp-drives-npn.cwz](./ep11-pnp-drives-npn.cwz)
+
 - **Setup:** Q2 emitter to +12 V, base → R3 = 500 Ω → SW1 → ground; Q2 collector → green D1 → R1 = 100 Ω → ground, and → R2 = 10 kΩ → Q1 base; Q1 collector ← R4 = 220 Ω + green D2 ← +12 V; Q1 emitter to ground.
 
 **Expected vs. simulated:** works exactly as described in the video ✔. A switch to **ground** turns everything on, and the output NPN saturates hard (55 mV), because Q2 hands it almost the full 12 V through R2. The load (D2) sits above Q1, so this form doesn't follow the car rule. It's for circuits where the input signal is ground-active.
@@ -273,6 +283,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 ![Thermistor fan controller](media/ep11-sim-thermistor-fan-controller.gif)
 
 *The thermistor R6 is heated step by step from 15 °C to 80 °C with its slider. Nothing happens until ≈ 65 °C, then the voltage across Q2 starts to fall, the red LED D2 lights and the fan MT1 spins. Watch the voltmeter: at 80 °C it still reads 9.05 V, so most of the 12 V is lost in Q2.* · [MP4](media/ep11-sim-thermistor-fan-controller.mp4)
+
+📁 Circuit file: [ep11-thermistor-fan-controller.cwz](./ep11-thermistor-fan-controller.cwz)
 
 - **Setup:** R6 = NTC thermistor (10 kΩ at 25 °C) from +12 V to the divider midpoint; R5 = 100 Ω from midpoint to ground; R1 = 10 kΩ from midpoint to Q1 (BC547B) base; red D2 + R3 = 600 Ω from +12 V to Q1 collector; R2 = 1 kΩ from Q1 collector to Q2 (BD140) base; Q2 emitter to +12 V, collector → fan MT1 → ground.
 

@@ -154,6 +154,8 @@ All files are in [`media/`](./media/). Each GIF plays on this page. Click the MP
 
 *Toggling SW1 moves the shared base input between +9 V and 0 V, so the lit LED swaps each time. Watch the middle node: when it is pulled high, the red LED (D2) lights; when it is pulled low, the green LED (D1) lights.* · [MP4](media/ep8-sim-push-pull-switching.mp4)
 
+📁 Circuit file: [ep8-push-pull.cwz](./ep8-push-pull.cwz)
+
 ![Push-pull still](media/ep8-push-pull-sim.png)
 
 - **Setup:** 9 V battery (the video uses 12 V), SW1 drives the tied bases of Q1 (NPN) and Q2 (PNP), $R_1 = R_2 = 220\ \Omega$.
@@ -175,6 +177,8 @@ $$I_{LED} \approx \frac{9 - 0.7 - 2}{220\ \Omega} \approx 29\ \text{mA}$$
 
 *The load current (I1) is stepped up from 1 A to 1.5 A while the sense resistor stays at 0.6 Ω. Watch the LED: it stays off at 1 A, glows faintly at 1.1 A, and gets brighter as the current rises.* · [MP4](media/ep8-sim-current-sense-threshold.mp4)
 
+📁 Circuit file: [ep8-current-sense-threshold.cwz](./ep8-current-sense-threshold.cwz)
+
 ![Current sensing still](media/ep8-current-sense-sim.png)
 
 | $I_1$ | Expected $V_{BE} = I_1 \times 0.6\ \Omega$ | Simulated LED |
@@ -191,6 +195,8 @@ $$I_{LED} \approx \frac{9 - 0.7 - 2}{220\ \Omega} \approx 29\ \text{mA}$$
 ![Bulb tester sweep](media/ep8-sim-bulb-tester-sweep.gif)
 
 *The load current I1 (the "bulb") is swept 0 A → 1 A → 1.1 A → 1.2 A → 0.5 A. Watch the two LEDs: green alone means OK, red alone means over 1 A, and both lit together marks the transition zone.* · [MP4](media/ep8-sim-bulb-tester-sweep.mp4)
+
+📁 Circuit file: [ep8-bulb-tester.cwz](./ep8-bulb-tester.cwz)
 
 ![Bulb tester still](media/ep8-current-checker-sim.png)
 

@@ -189,6 +189,8 @@ All files are in [`media/`](./media/). The GIF plays on this page (1.5× speed).
 
 *The battery B1 is changed by hand: 10 V → 11 V → 10 V, then down to 0 V and back up step by step. R1 is then changed from 10 kΩ to 677 Ω and the sweep is repeated. Watch the ammeter in the Zener branch: it reads 0 A whenever red is lit and jumps to µA as soon as green takes over.* · [MP4](media/ep10-sim-battery-voltage-sweep.mp4)
 
+📁 Circuit file: [ep10-battery-monitor.cwz](./ep10-battery-monitor.cwz)
+
 - **Setup:** B1 variable, D3 = 1N4740 (10 V Zener, used instead of the BZX85C10), R1 = $R_{B1}$ (10 kΩ, then 677 Ω), Q1 and Q2 = BC547B, R4 = $R_{B2}$ = 46 kΩ, R2 and R3 = 1 kΩ, D1 green, D2 red.
 - **Meters:** voltage across the Zener, ammeter in series with the Zener ($I_{B1}$), $V_{CE}$ of Q1 and Q2, voltage across the red LED.
 

@@ -153,6 +153,8 @@ All files are in [`media/`](./media/). The GIFs play on this page. Click the MP4
 
 *SW1 is closed at the start and the green LED (D3) is lit with the motor running. When SW1 opens, the green LED goes off and the red LED (D2) lights. Watch each diode's voltage drop from ≈ 0.59 V to ≈ 0.46 V when the green LED takes over.* · [MP4](media/ep9-sim-three-diodes-switching.mp4)
 
+📁 Circuit file: [ep9-three-diodes.cwz](./ep9-three-diodes.cwz)
+
 - **Setup:** 12 V, D1/D5/D4 silicon diodes, D2 red, D3 green, VR2 = 1 kΩ shared resistor, MT1 motor.
 
 | Measurement | SW1 open | SW1 closed |
@@ -174,6 +176,8 @@ $$I = \frac{12 - 3(0.587) - 2.16}{1\ \text{k}\Omega} = \frac{8.08\ \text{V}}{1\ 
 ![Zener switching](media/ep9-sim-zener-switching.gif)
 
 *SW1 is toggled several times. Each time it closes, the motor spins up and green takes over; each time it opens, red comes back. Watch the Zener's voltage drop below 5.1 V when green is on, which proves it has stopped conducting.* · [MP4](media/ep9-sim-zener-switching.mp4)
+
+📁 Circuit file: [ep9-zener.cwz](./ep9-zener.cwz)
 
 - **Setup:** 12 V, D3 = 1N751 (5.1 V Zener), D1 red, D2 green, VR1 = 1 kΩ shared resistor, MT1 motor.
 
@@ -197,6 +201,8 @@ $$5.11 + 1.68 + 5.21 = 12.0\ \text{V} \ ✔ \qquad I = \frac{5.21\ \text{V}}{1\ 
 ![Transistor design with separate resistors](media/ep9-sim-transistor-separate-resistors.gif)
 
 *The corrected transistor version: each LED has its own 1 kΩ resistor (VR1 for red, VR3 for green). SW1 is toggled. When it closes, Q1 switches on, the red LED (D1) goes dark and the green LED (D2) lights with the motor. When it opens, red comes back. Watch the voltage across D1 fall to ≈ 1 V when Q1 is on.* · [MP4](media/ep9-sim-transistor-separate-resistors.mp4)
+
+📁 Circuit file: [ep9-transistor-designs.cwz](./ep9-transistor-designs.cwz) (one file with both transistor versions: separate resistors and shared resistor)
 
 - **Setup:** 12 V, Q1 NPN with VR2 = 10 kΩ base resistor, D1 red, D2 green, VR1 = 1 kΩ (red branch), VR3 = 1 kΩ (green branch), MT1 motor.
 
@@ -222,6 +228,8 @@ The green current matches the video's 9.37 mA closely. Q1 holds only 1.03 V acro
 ![Transistor design with one shared resistor](media/ep9-sim-transistor-shared-resistor-fault.gif)
 
 *The first, wrong version: both LEDs and the transistor return to ground through **one** shared 1 kΩ resistor (VR4). With SW2 open the red LED (D3) lights normally. But when SW2 closes and the motor runs, the green LED (D4) **never lights**, because it gets less than 1 V.* · [MP4](media/ep9-sim-transistor-shared-resistor-fault.mp4)
+
+📁 Circuit file: [ep9-transistor-designs.cwz](./ep9-transistor-designs.cwz) (one file with both transistor versions: separate resistors and shared resistor)
 
 - **Setup:** same as above, but Q2, D3 red, D4 green, VR5 = 10 kΩ base resistor, and a single VR4 = 1 kΩ for everything, MT2 motor.
 

@@ -176,6 +176,8 @@ The Circuit Wizard thermistor is **33 kΩ at 25 °C** (4.08 kΩ at 80 °C, ≈ 3
 
 *The thermistor R4 is jumped from −20 °C to 80 °C: the LED D1 lights and the fan MT1 spins right away. Then R4 is set back to −20 °C. Watch the voltmeter: instead of jumping back to 12 V, it creeps up from 8.2 V to 11.46 V over about 16 s while the LED fades and the fan slows down.* · [MP4](media/ep12-sim-fan-delay-with-diode.mp4)
 
+📁 Circuit file: [ep12-fan-delay.cwz](./ep12-fan-delay.cwz) (one file with both versions: with and without the blocking diode)
+
 - **Setup:** R4 = NTC (33 kΩ at 25 °C) from +12 V to the divider midpoint; R5 = 1 kΩ from midpoint to ground; D3 from midpoint to the C1/R3 node; C1 = 470 µF to ground; R3 = 10 kΩ to Q1 (NPN) base; green D1 + R1 = 220 Ω from +12 V to Q1 collector; R2 = 1 kΩ from Q1 collector to Q2 (PNP) base; Q2 emitter to +12 V, collector → fan MT1 → ground.
 
 Readings (real time, from the recording):
@@ -196,6 +198,8 @@ Readings (real time, from the recording):
 ![Fan delay without diode](media/ep12-sim-fan-delay-no-diode.gif)
 
 *Same circuit, but the divider midpoint connects straight to C2 (500 µF) and R8, with no diode. R9 is jumped to 80 °C (fan on, 7.89 V across Q4) and then back down. Watch how fast it ends: within about 1 s the voltmeter is back at 12.00 V and the LED is out.* · [MP4](media/ep12-sim-fan-delay-no-diode.mp4)
+
+📁 Circuit file: [ep12-fan-delay.cwz](./ep12-fan-delay.cwz) (one file with both versions: with and without the blocking diode)
 
 - **Setup:** R9 = NTC (33 kΩ at 25 °C); R10 = 1 kΩ; C2 = 500 µF across R10; R8 = 10 kΩ to Q3 base; D2 + R6 = 220 Ω; R7 = 1 kΩ; Q4 (PNP) high side; fan MT2 to ground.
 
