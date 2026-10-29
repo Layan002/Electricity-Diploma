@@ -6,9 +6,11 @@ I'm studying the **Electricity Diploma** from Waleed Issa Academy on YouTube (in
 
 ## Courses
 
-| Course | Status |
-|---|---|
-| [Professional Electronic Design Course](./professional-electronic-design-course/) | 🟡 In progress |
+| # | Course | Episodes | Status |
+|---|---|---|---|
+| 1 | [Practical Electronics Course](./practical-electronics-course/) | 100 | 🟡 In progress |
+| 2 | [Digital Electronics Course](./digital-electronics-course/) | 37 | ⬜ Not started |
+| 3 | [Professional Electronic Design Course](./professional-electronic-design-course/) | 77 | 🟡 In progress |
 
 ## Episode Index
 
