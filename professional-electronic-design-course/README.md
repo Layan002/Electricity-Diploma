@@ -11,7 +11,7 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 | Level | Name | Episodes | Status |
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
-| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | ⬜ Up next |
+| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (1 / 12) |
 | 3 | — | 26 – … | ⬜ |
 | 4 | — | … – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
@@ -44,11 +44,11 @@ Episodes 01–13. Basic transistor switching, LEDs, diodes and Zeners, voltage d
 
 ## Level 2 – Advanced Electronic Design
 
-Episodes 14–25.
+Episodes 14–25. Circuits that make decisions on their own (codes, latches, oscillators) using only basic parts, without programming.
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
-| 14 | Designing a secret-code circuit without programming | — | ⬜ |
+| 14 | Secret-code lock without programming: switches in series (AND), wrong switches pull the MOSFET gate to 0 V, 10 kΩ series resistor prevents the battery short, gate pull-down, BJT vs. MOSFET (speed, power loss, drive voltage) | [ep14-secret-code-circuit-no-programming](./ep14-secret-code-circuit-no-programming/) | ✅ Summary + circuit file (simulation recording to come) |
 | 15 | Designing an interactive smart board for schools without programming | — | ⬜ |
 | 16 | Designing a joystick circuit that controls a motor for a toy factory | — | ⬜ |
 | 17 | Designing a one-press electric drill circuit with a relay | — | ⬜ |
