@@ -48,7 +48,7 @@ Episodes 14–25. Circuits that make decisions on their own (codes, latches, osc
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
-| 14 | Secret-code lock without programming: switches in series (AND), wrong switches pull the MOSFET gate to 0 V, 10 kΩ series resistor prevents the battery short, gate pull-down, BJT vs. MOSFET (speed, power loss, drive voltage) | [ep14-secret-code-circuit-no-programming](./ep14-secret-code-circuit-no-programming/) | ✅ Summary + circuit file (simulation recording to come) |
+| 14 | Secret-code lock without programming: switches in series (AND), wrong switches pull the MOSFET gate to 0 V, 10 kΩ series resistor prevents the battery short, gate pull-down, BJT vs. MOSFET (speed, power loss, drive voltage) | [ep14-secret-code-circuit-no-programming](./ep14-secret-code-circuit-no-programming/) | ✅ Summary + simulation (code on, code broken, code + wrong switch without a short) + video + circuit file |
 | 15 | Designing an interactive smart board for schools without programming | — | ⬜ |
 | 16 | Designing a joystick circuit that controls a motor for a toy factory | — | ⬜ |
 | 17 | Designing a one-press electric drill circuit with a relay | — | ⬜ |

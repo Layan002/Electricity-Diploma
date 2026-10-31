@@ -172,34 +172,55 @@ Most people would reach for a microcontroller, programming or an IC for this tas
 
 ---
 
-## My Circuit Wizard Circuit
+## My Circuit Wizard Simulation
+
+All files are in [`media/`](./media/). The GIF plays on this page (1.5× speed, cropped to the circuit). Click the MP4 link for the full recording.
+
+![Secret-code lock simulation](media/ep14-sim-secret-code-lock.gif)
+
+*The four code switches (SW4, SW5, SW6, SW8) start closed, so the gate wire is red (high) and the solenoid SL1 is pulled in. Watch the gate and the solenoid plunger: opening SW4 drops the gate to 0 V (green) and the plunger springs out. With SW4 closed again and a wrong switch also on, the code chain turns red right up to R2 but the gate stays green (locked, no short). Opening the wrong switch pulls the solenoid in again.* · [MP4](media/ep14-sim-secret-code-lock.mp4)
 
 📁 Circuit file: [ep14-secret-code-lock.cwz](./ep14-secret-code-lock.cwz)
 
-Parts in the file (from its parts list):
+### How my circuit is wired
 
-| Part | Qty |
+My switches are numbered **SW1–SW10**: SW1–SW9 stand for digits 1–9 and SW10 for digit 0. The code 4-5-6-8 is **SW4 → SW5 → SW6 → SW8**.
+
+| Part | Connection |
 |---|---|
-| 12 V battery (ideal) | 1 |
-| N-channel MOSFET (ideal) | 1 |
-| Solenoid (6 V DC) | 1 |
-| 10 kΩ resistor (¼ W) | 2 (series gate resistor + gate pull-down) |
-| SPST switch | 10 (digits 0–9) |
+| B1 = 12 V (ideal) | + to the top rail, − to ground |
+| SW4 → SW5 → SW6 → SW8 | in series from +12 V (the code chain) |
+| R2 = 10 kΩ | from the end of SW8 to the gate (the series resistor that prevents the short) |
+| R1 = 10 kΩ | gate to ground (the pull-down) |
+| SW1, SW2, SW3, SW7, SW9, SW10 | each one from ground to the gate (the wrong switches) |
+| Q1 = N-channel MOSFET (ideal) | source to ground, drain to the solenoid |
+| SL1 = Solenoid (6 V DC) | between +12 V and the drain |
 
-The parts match the Step 4 design from section 1 (one MOSFET + two 10 kΩ resistors). Two differences from the instructor's hardware build:
+This is the Step 4 design from section 1. Two differences from the instructor's hardware build:
 
 - Circuit Wizard's solenoid is the **6 V** model, while the video uses a **12 V** solenoid. On a 12 V supply it gets about twice its rating, which is fine in a simulation but not on real hardware.
-- The file has **no flyback diode** across the solenoid. In the simulation this doesn't matter much, but any real build needs one.
+- There's **no flyback diode** across the solenoid. It doesn't matter much in the simulation, but any real build needs one.
 
-**Expected in the simulation:**
+### What happens in the recording
 
-| Switches | Gate voltage | Solenoid |
-|---|---|---|
-| 4, 5, 6, 8 | ≈ 6.00 V | on |
-| 4, 5, 6, 8 + any other | ≈ 0 V, ≈ 1.2 mA through the series 10 kΩ | off |
-| Wrong code | 0 V | off |
+In Circuit Wizard's voltage view, **red = high voltage** and **green = near 0 V**.
 
-*(No simulation recording or screenshot yet. I'll add it to `media/` with the measured values.)*
+| Sim time | Switches on | Code chain | Gate | Solenoid | Matches the design? |
+|---|---|---|---|---|---|
+| 0.3–1.5 s | SW4, SW5, SW6, SW8 | red (12 V) | red (high) | pulled in (open) | ✔ |
+| ≈ 2.2–6 s | SW4 opened (code incomplete) | green | green (0 V) | released (locked) | ✔ |
+| ≈ 7.4–8.1 s | SW4, 5, 6, 8 + a wrong switch | red up to R2 | green (0 V) | released (locked) | ✔ no short: R2 takes the 12 V |
+| ≈ 9.2–14.5 s | wrong switch opened → code only | red | red (high) | pulled in again | ✔ |
+
+The third row is the important one. The whole code chain is at 12 V and the gate is at 0 V at the same time, and the only thing between them is R2. So the voltage drops across R2 instead of across a wire, and the current is only
+
+$$I = \frac{12\ \text{V}}{10\ \text{k}\Omega} = 1.2\ \text{mA}$$
+
+**Expected gate voltage with the correct code** (R2 and R1 as a divider):
+
+$$V_G = 12\ \text{V} \times \frac{10\ \text{k}\Omega}{10\ \text{k}\Omega + 10\ \text{k}\Omega} = 6\ \text{V}$$
+
+I didn't put a voltmeter or ammeter in this run, so the 6 V and 1.2 mA are calculated values. The simulation only confirms on/off behaviour.
 
 ---
 
@@ -211,10 +232,11 @@ The parts match the Step 4 design from section 1 (one MOSFET + two 10 kΩ resist
 - A MOSFET gate is a capacitor: always fit a **gate pull-down** (10 kΩ–1 MΩ), or the MOSFET can stay on by itself.
 - Coils (solenoids, relays, motors) always need a **reversed diode** across them.
 - Choosing BJT vs. MOSFET comes down to **switching speed**, **power loss** ($V_{CE(sat)} I_C$ vs. $I_D^2 R_{DS(on)}$) and **drive voltage** vs. $V_{BE}$ / $V_{GS(th)}$. For this lock they're equivalent (≈ 60 mW vs. ≈ 50 mW).
+- **From my simulation:** code SW4-5-6-8 → solenoid pulls in; breaking the code → released; code + a wrong switch → the chain stays at 12 V up to R2 while the gate sits at 0 V, so the lock stays shut with no short. Removing the wrong switch unlocks it again.
 
 ### Next to try
 
-- Record the simulation: correct code → solenoid on; add a wrong switch → off. Measure the gate voltage (expect ≈ 6 V) and the current in the series 10 kΩ (expect ≈ 1.2 mA).
+- Add a voltmeter on the gate (expect ≈ 6 V with the code) and an ammeter in series with R2 (expect ≈ 1.2 mA with the code + a wrong switch).
 - Remove the series 10 kΩ and add an ammeter to see how large the short-circuit current gets.
 - Remove the pull-down resistor and see whether the ideal MOSFET stays on after the code is broken.
 - Add a flyback diode across the solenoid and use a 12 V solenoid model (or a 6 V supply).
