@@ -4,7 +4,27 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 
 **Tool:** Circuit Wizard
 
-## Episodes
+## Course Levels
+
+The course is split into **5 levels**. Each level builds on the one before it, so the episodes are grouped by level below.
+
+| Level | Name | Episodes | Status |
+|---|---|---|---|
+| 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
+| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | ⬜ Up next |
+| 3 | — | 26 – … | ⬜ |
+| 4 | — | … – 51 | ⬜ |
+| 5 | — | 52 – 77 | ⬜ |
+
+Ep26 opens Level 3 and ep52 opens Level 5. I'll fill in the level names and the exact start of Level 4 when I get there.
+
+**Jump to:** [Level 1](#level-1--simple-electronic-design) · [Level 2](#level-2--advanced-electronic-design) · [Levels 3 & 4](#levels-3--4) · [Level 5](#level-5)
+
+---
+
+## Level 1 – Simple Electronic Design
+
+Episodes 01–13. Basic transistor switching, LEDs, diodes and Zeners, voltage dividers, sensors (LDR, thermistor), RC delays and motor direction control, each ending in a small design task.
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
@@ -19,6 +39,15 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 | 11 | Car cooling fan: why saturation matters, NPN above a grounded load fails, NPN→PNP driver transistor, NTC thermistor divider ($R_2$ = 100 Ω) | [ep11-car-cooling-fan-control](./ep11-car-cooling-fan-control/) | ✅ Summary + 6 simulations (NPN above load, TIP127 driver, PNP→NPN, thermistor fan) + videos + circuit files |
 | 12 | Car fan delayed turn-off: RC time delays (delayed on / off), diode & Zener thresholds, staircase-light timer, blocking diode on the thermistor fan circuit | [ep12-car-fan-delayed-turn-off](./ep12-car-fan-delayed-turn-off/) | ✅ Summary + 2 simulations (with vs. without blocking diode) + videos + circuit files |
 | 13 | Useless machine: ground as a 0 V reference, ± supply from two batteries, NPN/PNP pair reverses a motor, NC limit switch in the −V line stops the return | [ep13-useless-machine-motor-circuit](./ep13-useless-machine-motor-circuit/) | ✅ Summary + 3 simulations (ground reference, ground position vs. Zener LED, useless machine with limit switch) + videos + circuit files |
+
+---
+
+## Level 2 – Advanced Electronic Design
+
+Episodes 14–25.
+
+| Ep | Topic | Folder | Status |
+|---|---|---|---|
 | 14 | Designing a secret-code circuit without programming | — | ⬜ |
 | 15 | Designing an interactive smart board for schools without programming | — | ⬜ |
 | 16 | Designing a joystick circuit that controls a motor for a toy factory | — | ⬜ |
@@ -31,6 +60,15 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 | 23 | Designing a random-selection circuit using the oscillator | — | ⬜ |
 | 24 | Designing a boost circuit for an efficient torch with a small battery | — | ⬜ |
 | 25 | Designing a sequential oscillator circuit for decorative lights | — | ⬜ |
+
+---
+
+## Levels 3 & 4
+
+Episodes 26–51. Ep26 is the introduction to Level 3; the point where Level 4 begins will be marked here once I reach it.
+
+| Ep | Topic | Folder | Status |
+|---|---|---|---|
 | 26 | Introduction to Level 3 and its work plan | — | ⬜ |
 | 27 | The emitter follower and its special circuits | — | ⬜ |
 | 28 | Designs for a conventional power supply with current limiters | — | ⬜ |
@@ -57,6 +95,15 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 | 49 | Designing a simple electronic lock circuit without programming | — | ⬜ |
 | 50 | Designing a circuit to control several devices remotely | — | ⬜ |
 | 51 | Explaining various circuits that use the simplest components for many tasks | — | ⬜ |
+
+---
+
+## Level 5
+
+Episodes 52–77.
+
+| Ep | Topic | Folder | Status |
+|---|---|---|---|
 | 52 | Introduction to Level 5: the purpose of these circuits and block-diagram design | — | ⬜ |
 | 53 | Information sources used by professionals, and getting schematics | — | ⬜ |
 | 54 | Information sources and how to choose ICs for specific functions | — | ⬜ |
@@ -83,5 +130,7 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 | 75 | Manufacturing a PCB on aluminium | — | ⬜ |
 | 76 | Important considerations in PCB manufacturing for a more robust design | — | ⬜ |
 | 77 | How to benefit from electronic design experience, practically and financially | — | ⬜ |
+
+---
 
 **Status key:** ✅ done · 🟡 in progress · ⬜ not started
