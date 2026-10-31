@@ -1,7 +1,7 @@
 # Ep13 – Designing a Useless Machine Motor Circuit
 
 **Course:** Professional Electronic Design Course – Level 1 (Simple Electronic Design)
-**Source:** Waleed Issa Academy – [تصميم دائرة محرك مالهاش لزمة (Designing a useless machine motor circuit)](https://www.youtube.com/playlist?list=PLww54WQ2wa5qVh1p8iPi7HspX7N9hbvbc) (video in Arabic, ep13 in the course playlist)
+**Source:** Waleed Issa Academy – [تصميم دائرة محرك مالهاش لزمة (Designing a useless machine motor circuit)](https://www.youtube.com/watch?v=U1TNPuQPPw8) (video in Arabic)
 **Tool:** Circuit Wizard
 
 > This is my own English summary of the episode, written for study purposes. All credit for the content goes to Waleed Issa Academy.
@@ -159,7 +159,7 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 
 *The voltmeter's + lead stays on the top node, and its − lead (its own 0 V reference) is moved to different points down the divider. Watch the reading jump between 3.00 V, 12.00 V, 9.00 V and 6.00 V while the circuit itself never changes.* · [MP4](media/ep13-sim-ground-reference-divider.mp4)
 
-- **Setup:** B1 = 12 V; R1–R4 = 1 kΩ in series; voltmeter + on the top of R1.
+- **Setup:** B1 = 12 V; R1–R4 = 1 kΩ in series; voltmeter + on the top of R1. (No separate circuit file: it's the same divider as in sim 2, without the LED branch.)
 
 | Voltmeter − lead at | Resistors spanned | Expected | Simulated |
 |---|---|---|---|
@@ -173,6 +173,8 @@ All files are in [`media/`](./media/). The GIFs play on this page (1.5× speed, 
 ![Ground position Zener LED](media/ep13-sim-ground-position-zener-led.gif)
 
 *The divider's ground symbol is moved between nodes, and that changes how many volts the tap sits above the transistor's emitter (which is also on ground). Watch LED D2: on with the tap 9 V above ground, off at 3 V and 6 V. Halfway through, the Zener's model is changed from "Ideal" to 1N751 (5.1 V). At the end, D1 is rewired to the top rail and the LED comes back on.* · [MP4](media/ep13-sim-ground-position-zener-led.mp4)
+
+📁 Circuit file: [ep13-ground-position-zener-led.cwz](./ep13-ground-position-zener-led.cwz) (final state: 1N751 Zener, D1 wired to the top rail)
 
 - **Setup:** B1 = 12 V; R1–R4 = 1 kΩ divider; tap between R1 and R2 → Zener D1 (reverse biased) → R5 = 1 kΩ → Q1 (NPN) base; Q1 collector → R6 = 220 Ω → LED D2 → +12 V; Q1 emitter to ground. The divider's ground symbol is moved.
 
@@ -209,7 +211,12 @@ That's right on the edge, the same as the instructor's "almost but not quite" ca
 
 *SW1 picks +9 V or −9 V for the transistor bases; SW2 (the limit switch) sits only in the −9 V line. Watch the motor MT1 and the LEDs: up → D1 lights and the motor turns forward; down → D2 lights and the motor reverses; opening SW2 (the arm "pressing" the limit switch at home) stops everything, both LEDs off.* · [MP4](media/ep13-sim-useless-machine-limit-switch.mp4)
 
+📁 Circuit files:
+- [ep13-useless-machine.cwz](./ep13-useless-machine.cwz): the final design (1 kΩ base resistor + SW2 limit switch in the −9 V line)
+- [ep13-motor-reversing-pair.cwz](./ep13-motor-reversing-pair.cwz): the starting circuit before the design task (±9 V, SW1, NPN/PNP pair, motor, two LEDs). It has no limit switch or base resistor, so the motor never stops on its own.
+
 - **Setup:** B1 = B2 = 9 V in series, midpoint to ground (±9 V); SW1 (SPDT) common → R3 = 1 kΩ → bases of Q1 (NPN, collector to +9 V) and Q2 (PNP, collector to −9 V); SW1's lower contact goes to −9 V **through SW2**; emitters joined → motor MT1 to ground; D1 + R1 = 220 Ω (lights on +), D2 + R2 = 220 Ω reversed (lights on −).
+- The motor in both files is Circuit Wizard's **"DC Motor (3V DC)"**, so in the sim it gets ≈ 8.3 V, almost 3× its rating. The instructor solved the same problem on hardware with a series resistor (3 × 100 Ω in parallel ≈ 33 Ω) in front of his 5 V motor.
 - I toggle SW2 by hand to stand in for the arm pressing it. In the real machine it's an NC micro switch, so "pressed" = open.
 
 | SW1 | SW2 (limit) | Motor gets (expected) | Simulated |
@@ -239,7 +246,7 @@ That's fine for a short demo, but it's above the usual 20 mA. In a build I'd use
 
 ### Next to try
 
-- Save the three circuits as `.cwz` files in this folder.
+- Add a series resistor in front of the 3 V motor (like the instructor's ≈ 33 Ω dropper) so it gets ≈ 3 V instead of ≈ 8.3 V.
 - Add a voltmeter across MT1 and record the actual ± motor voltage (expect ≈ ±8.3 V minus the drop across R3).
 - Change R1/R2 to 330 Ω to keep the LEDs under 20 mA.
 - Repeat sim 2 with a 3.9 V Zener (like the instructor) and check that the 6 V case now turns on.
