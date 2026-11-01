@@ -120,15 +120,18 @@ All files are in [`media/`](./media/). The GIF plays on this page (cropped to th
 
 *The 4 × 4 grid on the left is the 16 card contacts, SW21–SW24 are the answer switches, and SW1–SW4 on the right are the question switches. Watch which row turns red when a question is switched on: that's the slot holding its card, and only the answer switch on that row lights BL1. Near the end, card 2 is moved from slot 3 to slot 1, and the lamp follows it.* · [MP4](media/ep15-sim-smart-quiz-board.mp4)
 
+📁 Circuit file: [ep15-smart-quiz-board.cwz](./ep15-smart-quiz-board.cwz)
+
 ### How my circuit is wired
 
 | Part | Connection |
 |---|---|
-| B1 = 9 V | + to the four question switches, − to the lamp |
+| B1 = 9 V battery (ideal) | + to the four question switches, − to the lamp |
+| 24 × SPST switch | see below |
 | SW1–SW4 | question switches Q1–Q4. Each one feeds one contact column |
 | SW5–SW20 | the 16 card contacts in 4 rows (slots) × 4 columns (questions) |
 | SW21–SW24 | answer switches for slots 1–4. Each one joins its row to the lamp line |
-| BL1 | lamp, between the joined answer-switch outputs and B1 − |
+| BL1 = Signal Lamp (6 V, 60 mA) | lamp, between the joined answer-switch outputs and B1 − |
 
 Contact map (closing the contact = placing that question's card in the slot):
 
@@ -139,7 +142,10 @@ Contact map (closing the contact = placing that question's card in the slot):
 | 3 | SW23 | SW13 | SW14 | SW15 | SW16 |
 | 4 | SW24 | SW17 | SW18 | SW19 | SW20 |
 
-I used a **9 V** battery instead of the video's 12 V. That doesn't change the logic, because there's nothing in the circuit except switches and the lamp.
+Two differences from the instructor's build:
+
+- I used a **9 V** battery instead of the video's 12 V. That doesn't change the logic, because there's nothing in the circuit except switches and the lamp.
+- The lamp is Circuit Wizard's **6 V, 60 mA** signal lamp, so on 9 V it gets 1.5× its rating. That's fine in a simulation, but a real build should use a lamp rated for the supply (a 12 V lamp on the 12 V battery, as in the video).
 
 ### What happens in the recording
 
@@ -177,6 +183,7 @@ After I fixed it (one contact per card, each question's contact in only one slot
 ### Next to try
 
 - Add a lamp on each question line (Q1–Q4) to show which question is active.
-- Add an ammeter in series with BL1 to see the lamp current when it's lit.
+- Add an ammeter in series with BL1 to see the lamp current when it's lit (expect more than the 60 mA rating, since the 6 V lamp is on 9 V).
+- Swap BL1 for a lamp rated for the supply, or use a 6 V battery.
 - Replace the four question switches with one **rotary selector switch** so only one question can be on at once.
 - Scale up to more questions and check that the grid still works with $N^2$ contacts.
