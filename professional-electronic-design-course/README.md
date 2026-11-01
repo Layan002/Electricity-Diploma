@@ -11,7 +11,7 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 | Level | Name | Episodes | Status |
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
-| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (1 / 12) |
+| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (2 / 12) |
 | 3 | — | 26 – … | ⬜ |
 | 4 | — | … – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
@@ -49,7 +49,7 @@ Episodes 14–25. Circuits that make decisions on their own (codes, latches, osc
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
 | 14 | Secret-code lock without programming: switches in series (AND), wrong switches pull the MOSFET gate to 0 V, 10 kΩ series resistor prevents the battery short, gate pull-down, BJT vs. MOSFET (speed, power loss, drive voltage) | [ep14-secret-code-circuit-no-programming](./ep14-secret-code-circuit-no-programming/) | ✅ Summary + simulation (code on, code broken, code + wrong switch without a short) + video + circuit file |
-| 15 | Designing an interactive smart board for schools without programming | — | ⬜ |
+| 15 | Smart quiz board without programming: question switch AND answer switch, 4 × 4 contact grid (columns = questions, rows = card slots) so the correct answer follows its card, one contact per card | [ep15-interactive-smart-board-for-schools](./ep15-interactive-smart-board-for-schools/) | ✅ Summary + simulation (answer follows a moved card, double-contact mistake and fix) + video |
 | 16 | Designing a joystick circuit that controls a motor for a toy factory | — | ⬜ |
 | 17 | Designing a one-press electric drill circuit with a relay | — | ⬜ |
 | 18 | Designing a transistor latch circuit with a delay that avoids many problems | — | ⬜ |
