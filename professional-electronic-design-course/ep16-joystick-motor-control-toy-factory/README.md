@@ -144,6 +144,12 @@ I simulated **5 circuits**. Circuits 1, 3 and 4 are from the video. **Circuits 2
 
 I used **9 V** for the relay circuits instead of the video's 12 V. That changes the voltage levels but not the logic.
 
+📁 Circuit files:
+- [ep16-joystick-switches.cwz](./ep16-joystick-switches.cwz): Sims 1–3 (3 × 12 V ideal battery, 3 × DC motor (3 V), 1 DPDT switch, 4 SPDT switches)
+- [ep16-joystick-relays.cwz](./ep16-joystick-relays.cwz): Sims 4–5, all three relay circuits including the wrongly wired RL3/RL4 and the corrected RL5/RL6 (3 × 9 V ideal battery, 3 × DC motor (3 V), 6 × SPDT relay (6 V), 6 SPST switches)
+
+**Part ratings:** the motors are Circuit Wizard's **3 V** DC motor and the relays are **6 V** relays, but they run on 12 V and 9 V here. That's fine for checking the logic in a simulation. A real build should use a motor and relay coils rated for the supply (12 V parts on a 12 V battery, as in the video).
+
 ---
 
 ### Sim 1 – DPDT switch (from the video)
@@ -298,4 +304,4 @@ So with RL4 wired like that, the motor could only turn **one way**, and the othe
 - Add an **ammeter** in series with the battery in Sim 2 and the first try of Sim 5 to see how big the short-circuit current is (a real battery would need a fuse).
 - Use push-to-make switches instead of latching SPST switches for SW1/SW2, so they behave like a real joystick that springs back.
 - Add a **flyback diode** across each relay coil in a real build (outside this episode's "relays only" rule), to protect the joystick contacts when the coil switches off.
-- Upload the `.cwz` circuit files for these simulations.
+- Swap in a motor and relays rated for the supply voltage and check the circuit still behaves the same.
