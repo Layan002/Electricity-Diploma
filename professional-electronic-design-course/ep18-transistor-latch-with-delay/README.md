@@ -257,7 +257,61 @@ Connect the **OFF button across the capacitor** (from the middle node to ground)
 
 ## My Circuit Wizard Simulations
 
-*Not done yet.* Simulation GIFs, videos and circuit files will go in [`media/`](./media/).
+All files are in [`media/`](./media/). The GIF plays on this page (cropped to the circuit). Click the MP4 link for the full recording. In Circuit Wizard's voltage view, **red = high voltage** and **green = near 0 V**. Times in the table are Circuit Wizard's **simulated time** (the "Time" counter in the status bar), which runs a little slower than the video clock, plus the MP4 time in brackets.
+
+📁 Circuit file: [ep18-transistor-latch-with-delay.cwz](./ep18-transistor-latch-with-delay.cwz) – 1 × 9 V ideal battery, 1 × ideal NPN, 1 × ideal PNP, 1 × red LED, 220 Ω, 2 × 10 kΩ, 4.7 kΩ, 100 kΩ, 470 µF capacitor, 2 × push-to-make switch
+
+This is **version A with the delay** (section 6), with OFF already moved across the capacitor.
+
+| Part | Role | Connection |
+|---|---|---|
+| B1 | 9 V supply | |
+| Q1 (PNP) | high-side switch for the LED | emitter → +9 V, base → R4 → Q2 collector, collector → **node X** |
+| Q2 (NPN) | pulls Q1's base low | collector → R2 (4.7 kΩ) → +9 V, base → R5 (10 kΩ) → node X, emitter → 0 V |
+| R4 (10 kΩ) | Q1 base resistor | Q2 collector ↔ Q1 base |
+| R2 (4.7 kΩ) | pull-up | keeps Q1's base high (Q1 off) while Q2 is off |
+| R5 (10 kΩ) | feedback / Q2 base resistor | node X → Q2 base |
+| D1 + R1 (220 Ω) | load at the bottom | node X → LED → 220 Ω → 0 V |
+| ON1 + R3 (100 kΩ) | ON button + delay resistor | +9 V → ON1 → 100 kΩ → node X |
+| C1 (470 µF) | delay capacitor | node X → 0 V |
+| OFF2 | OFF button, across C1 | node X → 0 V |
+
+**Node X** is the capacitor, Q1's collector, the LED's top and the end of the feedback resistor R5, all in one point. The ON signal charges C1 slowly through R3, and once Q1 is on it holds node X at about +9 V, which keeps feeding Q2's base through R5.
+
+---
+
+### Sim 1 – Latch with a turn-on delay
+
+![Transistor latch with RC delay: hold ON about 5 s, LED latches, OFF clears it](media/ep18-sim-latch-with-delay.gif)
+
+*ON1 is held down, but the LED stays dark for about 4–5 s while C1 charges through the 100 kΩ (watch the charge build up on C1). Then node X turns red, D1 lights, and it **stays lit after ON1 is released**. One click on OFF2 shorts C1 and node X to ground, and the LED goes out at once.* · [MP4](media/ep18-sim-latch-with-delay.mp4)
+
+| Sim time (MP4) | Action | Node X / C1 | Q2 collector | D1 |
+|---|---|---|---|---|
+| 0–2.2 s (4.5–6.5 s) | nothing pressed | 0 V (green) | high (red) → Q1 off | off ✔ |
+| ≈ 2.2–2.5 s (≈ 7 s) | **press and hold ON1** | starts charging | high | off |
+| 2.5–6.6 s (7–11 s) | ON1 still held | charging (charge visible on C1) | high | **still off** ✔ delay |
+| ≈ 7.3 s (11.5 s) | ON1 still held | high (red) | **0 V (green)** → Q1 on | **on** ✔ |
+| 8.1–8.8 s (12.5–13 s) | **ON1 released** | stays high (fed by Q1) | 0 V | **stays on** ✔ latched |
+| ≈ 10.7 s (15 s) | **click OFF2** | 0 V (C1 discharged) | high | **off** ✔ |
+| 11.1–11.8 s (15.5–16.5 s) | OFF2 released | 0 V | high | **stays off** ✔ |
+
+**Measured delay:** ON1 closed between 2.16 s and 2.53 s, and D1 was first lit between 6.61 s and 7.35 s, so the delay is about **4.1–5.2 s**.
+
+**Expected delay:** $\tau = R_3 C_1 = 100\ \text{k}\Omega \times 470\ \mu\text{F} = 47\ \text{s}$. Node X only has to reach the voltage that turns Q2 on through R5 (a bit above $V_{BE} \approx 0.7\ \text{V}$; the LED path draws almost nothing until about 1.6 V), so
+
+$$
+t = RC \ln\!\left(\frac{V_S}{V_S - V_{th}}\right) \quad\Rightarrow\quad
+\begin{cases} V_{th} = 0.7\ \text{V}: & t \approx 47 \times 0.081 \approx 3.8\ \text{s} \\ V_{th} = 0.9\ \text{V}: & t \approx 47 \times 0.105 \approx 4.9\ \text{s} \end{cases}
+$$
+
+✔ The simulated 4.1–5.2 s fits a turn-on threshold of roughly **0.75–0.95 V** at node X. It also matches the "1, 2, 3, 4" count in the video's hardware test.
+
+✔ **No turn-back-on after OFF.** Because OFF2 sits across C1, releasing it leaves node X at 0 V with an empty capacitor, so Q2 has nothing to restart it. This is the fix from section 6 working.
+
+**Why OFF on Q2's base would fail here:** once latched, C1 is charged to about 9 V through Q1. Grounding only Q2's base would stop Q2 while pressed, but on release, C1 (and Q1, which takes a moment to turn off) would feed Q2's base again through R5.
+
+**One thing to watch in a real build:** pressing OFF2 while latched also shorts **Q1's collector** to ground for a moment. In the sim the ideal PNP doesn't mind. In hardware the current is limited by Q1's base drive (about $(9 - 0.7)\ \text{V} / 10\ \text{k}\Omega \approx 0.8\ \text{mA}$ times β, so tens of mA for a small PNP) plus C1 dumping its charge through the switch. That's short and usually fine, but a small resistor (e.g. 100 Ω) in series with OFF2 would make it gentler.
 
 ---
 
@@ -269,11 +323,14 @@ Connect the **OFF button across the capacitor** (from the middle node to ground)
 - The NPN + PNP latch has **no current at all** in the off state and suits grounded loads (cars).
 - A delay is an **RC** network on the **signal** that needs delaying, and the signal must be taken from the **capacitor node**, not straight after the switch.
 - A capacitor can store enough charge to restart a transistor after OFF is released. Put the OFF button **across the capacitor** so it discharges it completely.
+- The 100 kΩ / 470 µF delay gave **about 4–5 s** in my simulation, which fits $t = RC\ln(V_S/(V_S - V_{th}))$ with $V_{th} \approx 0.8$–$0.9\ \text{V}$ (**from my Sim 1**).
+- With OFF across the capacitor, the latch turns off cleanly and stays off after the button is released (**from my Sim 1**).
 - Real hardware shows problems the simulator doesn't (faint glow, leftover charge).
 
 ### Next to try
 
 - Simulate the NPN–NPN latch and measure the off-state LED current (expect ≈ 0.65–0.73 mA), then add the 1 kΩ across the LED.
-- Simulate version A with the 100 kΩ / 470 µF delay and time how long ON must be held. Compare with $t = RC\ln(V_S/(V_S - V_{th}))$.
-- Try OFF on the base vs. across the capacitor and record the "comes back on" fault.
-- Try other R / C values (e.g. 470 kΩ, 220 µF) and plot delay vs. RC.
+- In this circuit, move OFF2 onto Q2's base instead of across C1 and record the "comes back on" fault from the video.
+- Tap ON1 for under a second to confirm a short press is ignored, and check how long C1 takes to drain back (through R5 and Q2's base) before the next attempt.
+- Try other R / C values (e.g. 470 kΩ, 220 µF) and compare the measured delay with the RC formula.
+- Add a probe on node X to read the exact voltage at which Q2 turns on.
