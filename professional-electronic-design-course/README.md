@@ -57,7 +57,7 @@ Episodes 14–25. Circuits that make decisions on their own (codes, latches, osc
 | 20 | One-press ON/OFF toggle: ON and OFF on the same latch node, capacitor node as a high/low "memory", latch-driven discharge transistor makes the next press an OFF, relay coil or NPN driver makes the latch turn on by itself → PNP high-side driver (1 kΩ, load at the bottom), 1 µF unstable → 220 µF stable | [ep20-one-press-on-off-circuit](./ep20-one-press-on-off-circuit/) | 🟡 Summary only, simulation to do |
 | 21 | Analysing three real circuits: car courtesy light with delayed turn-off (2.2 MΩ ÷ 2 divider, Q3 fires at 1.4 V on C), 3-LED battery indicator (Zener thresholds, NPN/PNP shorting an LED, 10 V → 11 V Zener), solar engine (4700 µF, 2.7 V Zener triggers at ≈ 3.5 V, NPN–PNP latch) | [ep21-analysing-three-transistor-circuits](./ep21-analysing-three-transistor-circuits/) | 🟡 Summary only, simulation to do |
 | 22 | The flip-flop capacitor as an oscillator, and designing a status indicator | — | ⬜ |
-| 23 | Designing a random-selection circuit using the oscillator | — | ⬜ |
+| 23 | Random-selection circuit with the oscillator: flip-flop capacitor demo (≈ 8 V → ≈ −7 V, recovers at 0.7 V), two-transistor flasher (2N2222, 470 Ω, 10 kΩ, 33 µF / 1 µF ≈ 9.67 Hz), R and C set ON/OFF times, LDR buzzer / speaker across collectors / toy organ, switch in the charging supply + 46 kΩ latch resistors hold the last LED | [ep23-random-selection-circuit-oscillator](./ep23-random-selection-circuit-oscillator/) | 🟡 Summary only, simulation to do |
 | 24 | Designing a boost circuit for an efficient torch with a small battery | — | ⬜ |
 | 25 | Designing a sequential oscillator circuit for decorative lights | — | ⬜ |
 
