@@ -58,7 +58,7 @@ Episodes 14–25. Circuits that make decisions on their own (codes, latches, osc
 | 21 | Analysing three real circuits: car courtesy light with delayed turn-off (2.2 MΩ ÷ 2 divider, Q3 fires at 1.4 V on C), 3-LED battery indicator (Zener thresholds, NPN/PNP shorting an LED, 10 V → 11 V Zener), solar engine (4700 µF, 2.7 V Zener triggers at ≈ 3.5 V, NPN–PNP latch) | [ep21-analysing-three-transistor-circuits](./ep21-analysing-three-transistor-circuits/) | 🟡 Summary only, simulation to do |
 | 22 | The flip-flop capacitor as an oscillator, and designing a status indicator | — | ⬜ |
 | 23 | Random-selection circuit with the oscillator: flip-flop capacitor demo (≈ 8 V → ≈ −7 V, recovers at 0.7 V), two-transistor flasher (2N2222, 470 Ω, 10 kΩ, 33 µF / 1 µF ≈ 9.67 Hz), R and C set ON/OFF times, LDR buzzer / speaker across collectors / toy organ, switch in the charging supply + 46 kΩ latch resistors hold the last LED | [ep23-random-selection-circuit-oscillator](./ep23-random-selection-circuit-oscillator/) | 🟡 Summary only, simulation to do |
-| 24 | Designing a boost circuit for an efficient torch with a small battery | — | ⬜ |
+| 24 | Boost (DC-to-DC) converter for a torch: inductor opposes current changes and adds to the battery when cut, inductor + switch + diode + capacitor, transistor driven by the ep23 oscillator (100 nF for high frequency), 3.7 V Li cell → ≈ 16 V for 6 (even 12) white LEDs in series (IRFZ44, 10 kΩ gate pull-down, 2.2 mH), load current limits the boost, two-transistor online circuit with steady brightness down to 3 V | [ep24-boost-circuit-efficient-torch](./ep24-boost-circuit-efficient-torch/) | 🟡 Summary only, simulation to do |
 | 25 | Designing a sequential oscillator circuit for decorative lights | — | ⬜ |
 
 ---
