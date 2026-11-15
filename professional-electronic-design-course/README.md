@@ -12,11 +12,11 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
 | 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (6 / 12) |
-| 3 | — | 26 – … | ⬜ |
+| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress |
 | 4 | — | … – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
 
-Ep26 opens Level 3 and ep52 opens Level 5. I'll fill in the level names and the exact start of Level 4 when I get there.
+Ep26 opens Level 3 (special "block" circuits) and ep52 opens Level 5. I'll fill in the level names and the exact start of Level 4 when I get there.
 
 **Jump to:** [Level 1](#level-1--simple-electronic-design) · [Level 2](#level-2--advanced-electronic-design) · [Levels 3 & 4](#levels-3--4) · [Level 5](#level-5)
 
@@ -70,7 +70,7 @@ Episodes 26–51. Ep26 is the introduction to Level 3; the point where Level 4 b
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
 | 26 | Introduction to Level 3 and its work plan | — | ⬜ |
-| 27 | The emitter follower and its special circuits | — | ⬜ |
+| 27 | Emitter follower → 5 V linear regulator: follower as a buffer (high input R, current boost), divider collapses under load (9 V, 1 k / 1.25 k → 1.3 V at 200 Ω), 5.6 V Zener on the base holds 5 V for 9 – 30 V in, 2N2222 fails at 0.5 A, low-β 2N3055 loads the Zener (7.8 mA), Darlington (6.8 V Zener, 2 × V_BE), complementary Darlington 2N2222 + MJ2955 (1.1 A at ≈ 5 V, 38 µA base), push-pull block | [ep27-emitter-follower-special-circuits](./ep27-emitter-follower-special-circuits/) | 🟡 Summary only, simulation to do |
 | 28 | Designs for a conventional power supply with current limiters | — | ⬜ |
 | 29 | Unusual uses of the transistor | — | ⬜ |
 | 30 | Window (range) circuits and designing heater and temperature control circuits | — | ⬜ |
