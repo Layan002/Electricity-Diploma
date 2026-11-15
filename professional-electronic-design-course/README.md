@@ -11,8 +11,8 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 | Level | Name | Episodes | Status |
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
-| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (6 / 12) |
-| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress |
+| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (10 / 12) |
+| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress (1 watched) |
 | 4 | — | … – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
 
