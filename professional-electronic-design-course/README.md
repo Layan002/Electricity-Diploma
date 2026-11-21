@@ -12,7 +12,7 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
 | 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (11 / 12) |
-| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress (3 watched) |
+| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress (4 watched) |
 | 4 | — | … – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
 
@@ -69,7 +69,7 @@ Episodes 26–51. Ep26 is the introduction to Level 3; the point where Level 4 b
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
-| 26 | Introduction to Level 3 and its work plan | — | ⬜ |
+| 26 | Introduction to Level 3: circuits as black-box "blocks" (shape + function), reading ≈ 80 – 90 % of a big schematic, two circuit families (decision-making ON/OFF vs. signal processing; remote control uses both), work plan: record each block with a one-sentence function, no mathematical proofs | [ep26-introduction-to-level-3-work-plan](./ep26-introduction-to-level-3-work-plan/) | ✅ Summary (intro episode, no circuit) |
 | 27 | Emitter follower → 5 V linear regulator: follower as a buffer (high input R, current boost), divider collapses under load (9 V, 1 k / 1.25 k → 1.3 V at 200 Ω), 5.6 V Zener on the base holds 5 V for 9 – 30 V in, 2N2222 fails at 0.5 A, low-β 2N3055 loads the Zener (7.8 mA), Darlington (6.8 V Zener, 2 × V_BE), complementary Darlington 2N2222 + MJ2955 (1.1 A at ≈ 5 V, 38 µA base), push-pull block | [ep27-emitter-follower-special-circuits](./ep27-emitter-follower-special-circuits/) | 🟡 Summary only, simulation to do |
 | 28 | Conventional power supply with protection blocks: op-amp feedback (2.5 V ref, 10 k / 10 k → 5 V), op-amp + follower with $V_{BE}$ inside the loop, current limiter ($I \approx 0.7/R_{SC}$), SCR + Zener crowbar with fuse, foldback limiting (5 V / 2.5 A → 1.7 A into a short), BJTs in parallel (thermal runaway, emitter resistors) vs. MOSFETs, blocks inside the LM317 and 7805 | [ep28-conventional-power-supply-current-limiters](./ep28-conventional-power-supply-current-limiters/) | 🟡 Summary only, simulation to do |
 | 29 | Unusual uses of the transistor: diode-connected transistor (base on collector), 0.7 V lift against crossover distortion and for a zero-offset PNP→NPN follower (10 V in → 10 V out), matched pair for temperature compensation, diode + small resistor → reference → constant current, $V_{BE}$ multiplier $V_{BE}(1 + R_1/R_2)$, reverse E–B junction as a ≈ 6 V Zener (BC547, ruins β), multi-emitter area ratio (10×) in the LM35 (10 mV/°C) | [ep29-unusual-uses-of-the-transistor](./ep29-unusual-uses-of-the-transistor/) | 🟡 Summary only, simulation to do |
