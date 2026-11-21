@@ -6,7 +6,7 @@ My notes, summaries, and Circuit Wizard simulations for the **Professional Elect
 
 ## Course Levels
 
-The course is split into **5 levels**. Each level builds on the one before it, so the episodes are grouped by level below.
+The course is split into **6 levels**. Each level builds on the one before it, so the episodes are grouped by level below.
 
 | Level | Name | Episodes | Status |
 |---|---|---|---|
@@ -14,11 +14,12 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 | 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 All 12 watched, simulations to do |
 | 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – 37 | 🟡 In progress (5 / 12 watched) |
 | 4 | — | 38 – 51 | ⬜ |
-| 5 | — | 52 – 77 | ⬜ |
+| 5 | — | 52 – 66 | ⬜ |
+| 6 | PCB Design | 67 – 77 | ⬜ |
 
-Ep26 opens Level 3 (special "block" circuits), ep38 opens Level 4 (starting with the 555 timer) and ep52 opens Level 5. I'll fill in the names of Levels 4 and 5 when I get there.
+Ep26 opens Level 3 (special "block" circuits), ep38 opens Level 4 (starting with the 555 timer), ep52 opens Level 5, and ep67 opens Level 6 (the PCB course). I'll fill in the names of Levels 4 and 5 when I get there.
 
-**Jump to:** [Level 1](#level-1--simple-electronic-design) · [Level 2](#level-2--advanced-electronic-design) · [Level 3](#level-3--special-block-circuits) · [Level 4](#level-4) · [Level 5](#level-5)
+**Jump to:** [Level 1](#level-1--simple-electronic-design) · [Level 2](#level-2--advanced-electronic-design) · [Level 3](#level-3--special-block-circuits) · [Level 4](#level-4) · [Level 5](#level-5) · [Level 6](#level-6--pcb-design)
 
 ---
 
@@ -109,7 +110,7 @@ Episodes 38–51. Starts with the 555 timer.
 
 ## Level 5
 
-Episodes 52–77.
+Episodes 52–66.
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
@@ -128,6 +129,15 @@ Episodes 52–77.
 | 64 | What is SPWM? | — | ⬜ |
 | 65 | Developing a new frequency-detection circuit | — | ⬜ |
 | 66 | Developing a new market circuit for temperature control with aluminium heat sinking | — | ⬜ |
+
+---
+
+## Level 6 – PCB Design
+
+Episodes 67–77. Designing and manufacturing printed circuit boards (EasyEDA, isolation and creepage, SMD soldering, aluminium boards).
+
+| Ep | Topic | Folder | Status |
+|---|---|---|---|
 | 67 | Introduction to the PCB course: what printed circuit boards are | — | ⬜ |
 | 68 | Various practical examples of distinctive PCBs | — | ⬜ |
 | 69 | PCB manufacturing processes by different methods, plus soldering | — | ⬜ |
