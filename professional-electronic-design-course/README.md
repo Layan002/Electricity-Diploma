@@ -11,7 +11,7 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 | Level | Name | Episodes | Status |
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
-| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 In progress (11 / 12) |
+| 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 All 12 watched, simulations to do |
 | 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress (5 watched) |
 | 4 | — | … – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
@@ -59,7 +59,7 @@ Episodes 14–25. Circuits that make decisions on their own (codes, latches, osc
 | 22 | Flip-flop capacitor as an oscillator: capacitor voltage is relative ($V_{top} = V_{bottom} + V_C$), one plate held at 0.7 V → charge flips (+0.7 → −0.3 V), NPN + PNP one-capacitor flasher (9 V, 100 kΩ, 27 Ω, 33 µF ≈ 1.4 Hz, short ON / long OFF), speed-up capacitor for low supply, UPS low-battery flasher at 8 V (NPN across the capacitor, 100 kΩ / 6.5 kΩ divider or trimmer), latch (R + R) vs. oscillator (R + C) | [ep22-flip-flop-capacitor-oscillator-status-indicator](./ep22-flip-flop-capacitor-oscillator-status-indicator/) | 🟡 Summary only, simulation to do |
 | 23 | Random-selection circuit with the oscillator: flip-flop capacitor demo (≈ 8 V → ≈ −7 V, recovers at 0.7 V), two-transistor flasher (2N2222, 470 Ω, 10 kΩ, 33 µF / 1 µF ≈ 9.67 Hz), R and C set ON/OFF times, LDR buzzer / speaker across collectors / toy organ, switch in the charging supply + 46 kΩ latch resistors hold the last LED | [ep23-random-selection-circuit-oscillator](./ep23-random-selection-circuit-oscillator/) | 🟡 Summary only, simulation to do |
 | 24 | Boost (DC-to-DC) converter for a torch: inductor opposes current changes and adds to the battery when cut, inductor + switch + diode + capacitor, transistor driven by the ep23 oscillator (100 nF for high frequency), 3.7 V Li cell → ≈ 16 V for 6 (even 12) white LEDs in series (IRFZ44, 10 kΩ gate pull-down, 2.2 mH), load current limits the boost, two-transistor online circuit with steady brightness down to 3 V | [ep24-boost-circuit-efficient-torch](./ep24-boost-circuit-efficient-torch/) | 🟡 Summary only, simulation to do |
-| 25 | Designing a sequential oscillator circuit for decorative lights | — | ⬜ |
+| 25 | Sequential oscillator (LED chaser) for decorative lights: ep23 flasher block repeated in a ring (collector → C → next base, last → first), LED in parallel with the transistor makes the ON move instead of the OFF, each capacitor sets the next step's time (220 µF → 33 µF), one NPN driver per colour (5 red / 5 green / 5 yellow, 50 mA, β ≈ 200, $R_B$ ≈ 25 kΩ → 22 kΩ), driver in linear mode (≈ 7 V across it), PNP driver inverts the pattern | [ep25-sequential-oscillator-decorative-lights](./ep25-sequential-oscillator-decorative-lights/) | 🟡 Summary only, simulation to do |
 
 ---
 
