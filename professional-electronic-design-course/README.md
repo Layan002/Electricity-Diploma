@@ -12,13 +12,13 @@ The course is split into **5 levels**. Each level builds on the one before it, s
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
 | 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 All 12 watched, simulations to do |
-| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – … | 🟡 In progress (5 watched) |
-| 4 | — | … – 51 | ⬜ |
+| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – 37 | 🟡 In progress (5 / 12 watched) |
+| 4 | — | 38 – 51 | ⬜ |
 | 5 | — | 52 – 77 | ⬜ |
 
-Ep26 opens Level 3 (special "block" circuits) and ep52 opens Level 5. I'll fill in the level names and the exact start of Level 4 when I get there.
+Ep26 opens Level 3 (special "block" circuits), ep38 opens Level 4 (starting with the 555 timer) and ep52 opens Level 5. I'll fill in the names of Levels 4 and 5 when I get there.
 
-**Jump to:** [Level 1](#level-1--simple-electronic-design) · [Level 2](#level-2--advanced-electronic-design) · [Levels 3 & 4](#levels-3--4) · [Level 5](#level-5)
+**Jump to:** [Level 1](#level-1--simple-electronic-design) · [Level 2](#level-2--advanced-electronic-design) · [Level 3](#level-3--special-block-circuits) · [Level 4](#level-4) · [Level 5](#level-5)
 
 ---
 
@@ -63,9 +63,9 @@ Episodes 14–25. Circuits that make decisions on their own (codes, latches, osc
 
 ---
 
-## Levels 3 & 4
+## Level 3 – Special "Block" Circuits
 
-Episodes 26–51. Ep26 is the introduction to Level 3; the point where Level 4 begins will be marked here once I reach it.
+Episodes 26–37. Reading big schematics as blocks with a known shape and function, built from transistors: followers and regulators, protection, current sources and mirrors, amplifiers and oscillators.
 
 | Ep | Topic | Folder | Status |
 |---|---|---|---|
@@ -81,6 +81,15 @@ Episodes 26–51. Ep26 is the introduction to Level 3; the point where Level 4 b
 | 35 | Advanced amplifier topics (bootstrap, Miller effect, cascode) | — | ⬜ |
 | 36 | Oscillators (Hartley, Colpitts, crystal) with a practical experiment | — | ⬜ |
 | 37 | Sending a wireless signal remotely (the simplest circuit) | — | ⬜ |
+
+---
+
+## Level 4
+
+Episodes 38–51. Starts with the 555 timer.
+
+| Ep | Topic | Folder | Status |
+|---|---|---|---|
 | 38 | What's inside the 555 timer | — | ⬜ |
 | 39 | A broader understanding of the 555 timer, with an interactive circuit design | — | ⬜ |
 | 40 | Marketable 555 timer applications | — | ⬜ |
