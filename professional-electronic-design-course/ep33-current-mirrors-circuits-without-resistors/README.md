@@ -11,7 +11,7 @@
 
 ## 1. Why we need something new
 
-In the previous episode (ep32) we built a **constant current source/sink**: hold a fixed voltage across a fixed resistor, and you get a fixed current through the load.
+In the previous episode ([ep32](../ep32-constant-current-source/)) we built a **constant current source/sink**: hold a fixed voltage across a fixed resistor, and you get a fixed current through the load.
 
 The weak point of that circuit is the **resistor in the current path**:
 
@@ -146,7 +146,7 @@ Exercises from the video:
 
 ## 9. Practical test (discrete transistors)
 
-Starting point: the **25 mA constant current source** from ep32 (9 V supply). Instead of driving the LEDs directly, its current goes into a mirror built from **two separate 2N2222** transistors. A white LED is the load.
+Starting point: the **25 mA constant current source** from [ep32](../ep32-constant-current-source/) (9 V supply). Instead of driving the LEDs directly, its current goes into a mirror built from **two separate 2N2222** transistors. A white LED is the load.
 
 | Test | Expected | Measured | Notes |
 |---|---|---|---|
