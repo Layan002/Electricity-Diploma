@@ -12,7 +12,7 @@ The course is split into **6 levels**. Each level builds on the one before it, s
 |---|---|---|---|
 | 1 | Simple Electronic Design (التصميم الالكتروني البسيط) | 01 – 13 | ✅ Finished |
 | 2 | Advanced Electronic Design (التصميم الالكتروني المتقدم) | 14 – 25 | 🟡 All 12 watched, simulations to do |
-| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – 37 | 🟡 In progress (5 / 12 watched) |
+| 3 | Special "Block" Circuits (الدوائر الخاصة الصندوقية) | 26 – 37 | 🟡 In progress (6 / 12 watched) |
 | 4 | — | 38 – 51 | ⬜ |
 | 5 | — | 52 – 66 | ⬜ |
 | 6 | PCB Design | 67 – 77 | ⬜ |
@@ -77,7 +77,7 @@ Episodes 26–37. Reading big schematics as blocks with a known shape and functi
 | 30 | Window (range) circuits → Schmitt trigger: one-threshold switch chatters with noise, input switches at $V_E + 0.7$, two NPNs sharing an emitter resistor (6 V demo: 100 Ω → ≈ 1.5 – 3 V window; 10 Ω narrow, 300 Ω wide), heater controller without an IC (NTC ≈ 6 kΩ @ 40 °C / 2.3 kΩ @ 60 °C, 9 V, 2N2222 × 2 + PNP + relay, $I_E$ ≈ 17.3 mA, $R_E$ = 100 Ω → ≈ 2.5 V pivot, divider 1 kΩ, 40 mW check), hardware test | [ep30-window-circuits-heater-temperature-control](./ep30-window-circuits-heater-temperature-control/) | 🟡 Summary only, simulation to do |
 | 31 | Short pulse generator: why? | — | ⬜ |
 | 32 | Running on a constant current (constant current source) | — | ⬜ |
-| 33 | Designing current mirrors and circuits without resistors | — | ⬜ |
+| 33 | Current mirrors and circuits without resistors: diode-connected transistor copies $I_{ref}$ to a matched twin ($I_{ref} = (V_{CC} - V_{BE})/R$, 15 V / 14.4 kΩ → 1 mA), assumptions (matching, high β), multiple outputs and $N_{out}/N_{in}$ ratios, mirrors replace resistors in ICs (REF200), emitter degeneration resistors (10 – 20 % of supply), Wilson mirror without resistors, spotting mirrors vs. sources (LM317 + 120 Ω), discrete 2N2222 test (25 mA → 120 mA unmatched, 26 mA with 75 Ω or Wilson) | [ep33-current-mirrors-circuits-without-resistors](./ep33-current-mirrors-circuits-without-resistors/) | 🟡 Summary only, simulation to do |
 | 34 | The differential amplifier and why it is so popular | — | ⬜ |
 | 35 | Advanced amplifier topics (bootstrap, Miller effect, cascode) | — | ⬜ |
 | 36 | Oscillators (Hartley, Colpitts, crystal) with a practical experiment | — | ⬜ |
